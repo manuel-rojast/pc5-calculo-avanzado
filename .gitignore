@@ -1,0 +1,15 @@
+# Ignorar artefactos auxiliares de LaTeX
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Ignorar archivos del sistema y entorno local
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+__pycache__/
