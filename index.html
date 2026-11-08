@@ -2,1269 +2,972 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-  <title>Cálculo Avanzado PC5 (CM2A1) • Plataforma Maestra Interactiva</title>
-  
-  <!-- Tipografía Académica -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <meta name="description" content="Guía Teórica y Compendio de 90 Ejercicios Resueltos para la Práctica Calificada 5 de Cálculo Diferencial e Integral Avanzado (CM2A1 - UNI). Incluye gráficos 3D interactivos con Three.js y versión PDF imprimible de 120 páginas.">
+  <title>Cálculo Avanzado CM2A1 - Plataforma Interactiva PC5 | UNI</title>
+
+  <!-- KaTeX CSS & JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Three.js & OrbitControls -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+  <!-- Google Fonts: Inter & Fira Code -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-  
-  <!-- KaTeX para renderizado matemático -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
-  
-  <!-- Estilos Maestros -->
-  <link rel="stylesheet" href="css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Estilos propios -->
+  <link rel="stylesheet" href="css/styles.css?v=6">
 </head>
 <body>
 
   <!-- Barra de Navegación Superior Fija -->
-  <header class="app-header">
-    <div class="header-inner">
-      <div class="brand-group">
-        <span class="uni-badge">UNI • FC</span>
-        <div class="brand-titles">
-          <h1 class="brand-main">Cálculo Diferencial e Integral Avanzado (CM2A1)</h1>
-          <span class="brand-sub">Plataforma Interactiva & Compendio Maestro • PC5 (2026-2)</span>
-        </div>
-      </div>
-      <div class="header-actions">
-        <a href="#section-tr" class="btn-retos-pill" id="nav-link-retos">
-          🎯 Retos 2026-2
+  <nav class="navbar">
+    <div class="nav-brand">
+      <span class="brand-badge">UNI FC</span>
+      <span class="brand-title">Cálculo Avanzado CM2A1 • PC5</span>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#temario">Temario</a></li>
+      <li>
+        <a href="#section-tr" id="nav-link-retos" class="nav-link-highlight">
+          <span class="pdf-text-long">🎯 Retos 2026-2</span>
+          <span class="pdf-text-short">🎯 Retos</span>
         </a>
-        <a href="pdf/Compendio_PC5_Calculo_Avanzado.pdf?v=1" target="_blank" class="btn-pdf-download" rel="noopener noreferrer">
+      </li>
+      <li><a href="#temario">Ejercicios</a></li>
+      <li>
+        <a href="pdf/Compendio_PC5_Calculo_Avanzado.pdf?v=1" target="_blank" rel="noopener noreferrer" class="btn-pdf-download" title="Descargar compendio completo oficial en PDF con Retos 2026-2 (120 páginas)">
           <span class="pdf-icon">📄</span>
-          <span class="pdf-text-long">Descargar Compendio PDF</span>
-          <span class="pdf-text-short">Ver PDF</span>
-          <span class="pdf-pages-badge">120 págs.</span>
+          <span class="pdf-text-long">Versión PDF Imprimible (120 págs)</span>
+          <span class="pdf-text-short">Ver PDF (120p)</span>
         </a>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero Banner Educativo -->
-  <section class="hero-banner">
-    <div class="hero-content">
-      <div class="hero-tag">COBERTURA OFICIAL SÍLABO DOSIFICADO 2026-2 (SESIONES 25 A 30)</div>
-      <h2 class="hero-title">Dominio Riguroso e Intuitivo de Integrales Múltiples y Coordenadas Curvilíneas</h2>
-      <p class="hero-desc">
-        Diseñado bajo la pedagogía de <strong>6 Bloques en Ancho Completo</strong>: Definiciones Formales, Gráfico 3D WebGL Bajo Demanda (0 FPS en reposo), Explicación Intuitiva, Traductor Bilingüe Jerga Formal ↔ Español, Demostración en 2 Fases (Borrador vs Formal) y Banco de 90 Ejercicios Graduados (Niveles 0 al 5) con Soluciones Completas y Trampas de Examen.
-      </p>
-      <div class="hero-metrics">
-        <div class="metric-card">
-          <span class="metric-num">5</span>
-          <span class="metric-label">Subtemas Clave</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-num">90</span>
-          <span class="metric-label">Ejercicios Graduados</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-num">5</span>
-          <span class="metric-label">Visores 3D Interactivos</span>
-        </div>
-        <div class="metric-card">
-          <span class="metric-num">100%</span>
-          <span class="metric-label">Solucionario PC5 2025-II</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Navegación de Temas Principales -->
-  <nav class="topic-tabs-nav" id="temario">
-    <button class="topic-tab-btn active" data-topic="t1">
-      <span>📐</span> Subtema 1: Regiones Generales y Fubini
-    </button>
-    <button class="topic-tab-btn" data-topic="t2">
-      <span>🔄</span> Subtema 2: Cambio de Variable en R² & Polares
-    </button>
-    <button class="topic-tab-btn" data-topic="t3">
-      <span>🧊</span> Subtema 3: Integrales Triples en Cartesianas
-    </button>
-    <button class="topic-tab-btn" data-topic="t4">
-      <span>🌐</span> Subtema 4: Coordenadas Cilíndricas & Esféricas
-    </button>
-    <button class="topic-tab-btn" data-topic="t5">
-      <span>⚖️</span> Subtema 5: Integrales en Rⁿ & Aplicaciones Físicas
-    </button>
-    <button class="topic-tab-btn retos-tab-special" data-topic="tr">
-      <span>🎯</span> Retos 2026-2: Solucionario PC5 2025-II & Híbridos
-    </button>
+      </li>
+    </ul>
   </nav>
 
-  <!-- Contenedor Principal de Secciones -->
-  <main class="app-main">
+  <!-- Contenedor Principal Centrado -->
+  <main class="main-container">
 
-    <!-- ===================================================================== -->
-    <!-- SUBTEMA 1: INTEGRALES DOBLES SOBRE REGIONES GENERALES (T1)           -->
-    <!-- ===================================================================== -->
+    <!-- Hero Header -->
+    <header class="hero-header" id="hero">
+      <span class="hero-tag">Ciclo 2026-2 • Sílabo Oficial (Sesiones 25 a 30) • UNI</span>
+      <h1 class="hero-title">Guía Maestra y Banco Interactivo: PC5</h1>
+      <p class="hero-desc">
+        Compendio integral de teoría rigurosa, <strong>Traductor Bilingüe de Notación Formal de Clase</strong>, <strong>Visores 3D WebGL Bajo Demanda (0 FPS en reposo)</strong>, <strong>Anatomía de Demostraciones en 2 Fases</strong>, <strong>Solucionario Oficial de Exámenes Recientes (PC5 2025-II & 2024-II)</strong> y <strong>90 problemas resueltos paso a paso</strong>.
+      </p>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number">6</div>
+          <div class="stat-label">Subtemas + Retos 2026-2</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">90</div>
+          <div class="stat-label">Ejercicios Graduados</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2 Fases</div>
+          <div class="stat-label">Borrador vs. Formal</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5</div>
+          <div class="stat-label">Simuladores 3D y Canvas</div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Pestañas de Navegación de Temas Principales -->
+    <nav class="topic-tabs-nav" id="temario">
+      <button class="topic-tab-btn active" data-topic="t1">
+        <span>📐</span> Subtema 1: Regiones Generales y Fubini
+      </button>
+      <button class="topic-tab-btn" data-topic="t2">
+        <span>🔄</span> Subtema 2: Cambio de Variable en R² & Polares
+      </button>
+      <button class="topic-tab-btn" data-topic="t3">
+        <span>🧊</span> Subtema 3: Integrales Triples en Cartesianas
+      </button>
+      <button class="topic-tab-btn" data-topic="t4">
+        <span>🌐</span> Subtema 4: Coordenadas Cilíndricas & Esféricas
+      </button>
+      <button class="topic-tab-btn" data-topic="t5">
+        <span>⚖️</span> Subtema 5: Integrales en Rⁿ & Aplicaciones Físicas
+      </button>
+      <button class="topic-tab-btn retos-tab-special" data-topic="tr">
+        <span>🎯</span> Retos 2026-2: Solucionario PC5 2025-II & Híbridos
+      </button>
+    </nav>
+
+    <!-- ========================================================================
+         SECCIÓN 1: INTEGRALES DOBLES SOBRE REGIONES GENERALES (SESIONES 25 Y 26)
+         ======================================================================== -->
     <section class="topic-section active" id="section-t1">
       <div class="topic-grid">
 
-        <!-- BLOQUE 1: DEFINICIONES, TEOREMAS Y PROPIEDADES FORMALES -->
-        <article class="theory-block">
-          <div class="theory-badge">Marco Teórico Riguroso • Sesiones 25 y 26</div>
-          <h2 class="theory-title">1. Integrales Dobles sobre Regiones Generales y Teorema de Fubini</h2>
-          
+        <!-- Tarjeta de Teoría Subtema 1 -->
+        <article class="theory-card">
+          <h2><span>📐</span> Regiones Generales en $\mathbb{R}^2$, Medibilidad Jordan y Teorema de Fubini</h2>
           <p>
-            Sea $\Omega \subset \mathbb{R}^2$ un conjunto acotado y sea $B = [a,b] \times [c,d]$ un rectángulo que contiene a $\Omega$ ($B \supset \Omega$). Para cualquier función acotada $f: \Omega \to \mathbb{R}$, se define su <strong>extensión por cero</strong> $f_\Omega: B \to \mathbb{R}$ mediante:
+            El cálculo integral sobre regiones planas acotadas arbitrarias $\Omega \subset \mathbb{R}^2$ requiere extender la integral de Riemann definida sobre rectángulos mediante la función indicatriz $f_\Omega(x,y) = f(x,y)\mathbf{1}_\Omega(x,y)$. La frontera $\partial\Omega$ desempeña un rol determinante: la integrabilidad queda garantizada si y solo si dicha frontera tiene <strong>contenido nulo</strong> en el sentido de Jordan.
           </p>
-          <div class="math-display">
-            $$f_\Omega(x,y) = \begin{cases} f(x,y), & \text{si } (x,y) \in \Omega \\[4pt] 0, & \text{si } (x,y) \in B \setminus \Omega \end{cases} = f(x,y) \cdot \chi_\Omega(x,y)$$
-          </div>
-          <p>
-            Decimos que $f$ es <strong>integrable según Riemann sobre $\Omega$</strong> si la extensión $f_\Omega$ es integrable sobre el rectángulo $B$, y en tal caso definimos:
-          </p>
-          <div class="math-display">
-            $$\iint_\Omega f(x,y) \, dA = \iint_B f_\Omega(x,y) \, dA$$
-          </div>
 
-          <div class="theorem-box">
-            <h4 class="theorem-title">Teorema (Criterio de Integrabilidad de Riemann-Lebesgue-Jordan)</h4>
+          <div class="theory-block theorem">
+            <h4>Definición Rigurosa: Regiones Elementales Tipo 1 y Tipo 2</h4>
             <p>
-              Sea $\Omega \subset \mathbb{R}^2$ acotado. La función constante $1_\Omega$ es integrable sobre $\Omega$ si y solo si la frontera topológica $\partial\Omega$ tiene <strong>contenido de Jordan nulo</strong> (es decir, puede cubrirse por un número finito de rectángulos cuya suma total de áreas es menor que cualquier $\varepsilon > 0$). En tal caso, decimos que $\Omega$ es <strong>Jordan-medible</strong> y su área viene dada por $\operatorname{Area}(\Omega) = \iint_\Omega 1 \, dA$.
+              Una región acotada $D \subset \mathbb{R}^2$ es <strong>Tipo 1</strong> (elemental respecto a $y$) si existen $a < b$ y funciones continuas $\phi_1, \phi_2 : [a,b] \to \mathbb{R}$ con $\phi_1(x) \le \phi_2(x)$ tales que:
+              $$D = \left\{ (x,y) \in \mathbb{R}^2 \mid a \le x \le b, \; \phi_1(x) \le y \le \phi_2(x) \right\}.$$
+              Análogamente, $D$ es <strong>Tipo 2</strong> (elemental respecto a $x$) si existen $c < d$ y funciones continuas $\psi_1, \psi_2 : [c,d] \to \mathbb{R}$ con $\psi_1(y) \le \psi_2(y)$ tales que:
+              $$D = \left\{ (x,y) \in \mathbb{R}^2 \mid c \le y \le d, \; \psi_1(y) \le x \le \psi_2(y) \right\}.$$
             </p>
-          </div>
-
-          <div class="theorem-box">
-            <h4 class="theorem-title">Teorema de Fubini para Regiones Tipo 1 y Tipo 2</h4>
-            <ul>
-              <li>
-                <strong>Región Tipo 1 (Proyección en $X$):</strong> $\Omega = \{ (x,y) \in \mathbb{R}^2 : a \le x \le b, \ \phi_1(x) \le y \le \phi_2(x) \}$, con $\phi_1, \phi_2$ continuas:
-                $$\iint_\Omega f(x,y) \, dA = \int_a^b \left( \int_{\phi_1(x)}^{\phi_2(x)} f(x,y) \, dy \right) dx$$
-              </li>
-              <li>
-                <strong>Región Tipo 2 (Proyección en $Y$):</strong> $\Omega = \{ (x,y) \in \mathbb{R}^2 : c \le y \le d, \ \psi_1(y) \le x \le \psi_2(y) \}$, con $\psi_1, \psi_2$ continuas:
-                $$\iint_\Omega f(x,y) \, dA = \int_c^d \left( \int_{\psi_1(y)}^{\psi_2(y)} f(x,y) \, dx \right) dy$$
-              </li>
-            </ul>
           </div>
 
           <div class="theory-block caution">
-            <h4 class="caution-title">⚠️ Trampa Clásica de Examen UNI (Límites en Inversión de Integrales)</h4>
+            <h4>¡Cuidado con esta trampa clásica UNI! (Límites dependientes en la integral exterior)</h4>
             <p>
-              ¡Jamás coloques variables en la integral exterior! La fórmula $\int_0^x \int_0^1 f \, dx dy$ es <strong>rotundamente falsa</strong> (PC5 2025-II, Pregunta 1b) porque la integral exterior no puede depender de la variable de integración interna. Al invertir el orden, se debe proyectar rigurosamente la región sobre el nuevo eje y calcular los techos y pisos correspondientes.
+              Un error recurrente en la PC5 consiste en dejar la variable dependiente en los límites de la integral más externa, escribiendo expresiones como $\int_0^x (\dots) dx$.
+              <strong>Regla de oro:</strong> La integral exterior DEBE tener siempre límites numéricos estrictamente constantes $[a,b]$. Todas las funciones frontera deben integrarse y desaparecer en la integral interior.
             </p>
           </div>
+
+          <!-- Visor 3D Interactivo Subtema 1 -->
+          <div class="visualizer-card embedded-visualizer">
+            <div class="visualizer-header">
+              <h3 class="visualizer-title">🎮 Gráfico 3D Interactivo: Región Parabólica e Inversión de Integración</h3>
+              <span class="touch-hint-badge">👆 Toca y gira en 3D</span>
+            </div>
+            <div class="three-canvas-wrapper" id="t1-canvas-container"></div>
+            <div class="visualizer-controls">
+              <div class="control-group">
+                <label class="control-label" for="t1-scan-slider">Corte Transversal ($x$):</label>
+                <input type="range" class="control-slider" id="t1-scan-slider" min="0" max="2" step="0.05" value="1.0">
+              </div>
+              <div class="visualizer-readout">
+                <span>Varilla en $x = 1.0$:</span>
+                <span class="readout-value" id="t1-scan-readout">$0 \le y \le 2.00$</span>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#94a3b8; margin-top:0.75rem; margin-bottom:0;">
+              Arrastra el slider para explorar cómo la varilla unidimensional barre el dominio delimitado por la recta $y = 2x$ y la parábola $y = x^2$.
+            </p>
+          </div>
+
+          <!-- Explicación Intuitiva -->
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <h4 style="color:#38bdf8;">💡 Explicación Sencilla y Detallada (Intuición Operativa)</h4>
+            <p>
+              <strong>¿Qué significa integrar sobre una región irregular?</strong> En una variable, integras acumulando varillas a lo largo de un intervalo $[a,b]$. En dos variables, para calcular el volumen bajo una superficie $z = f(x,y)$, Fubini rebanará el cuerpo en tajadas paralelas:
+            </p>
+            <ul style="margin-left: 1.5rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+              <li><strong>Estrategia Tipo 1 (Cortes verticales):</strong> Te paras en un punto $x$ de la recta. Miras hacia arriba: el suelo es $y = \phi_1(x)$ y el techo es $y = \phi_2(x)$. Integras verticalmente en $y$ para obtener el área de esa tajada plana $A(x)$. Luego barres todas las tajadas sumando en $x$ desde $a$ hasta $b$.</li>
+              <li><strong>Estrategia Tipo 2 (Cortes horizontales):</strong> Te paras en una altura $y$. Miras hacia la derecha: entras por la pared izquierda $x = \psi_1(y)$ y sales por la derecha $x = \psi_2(y)$.</li>
+            </ul>
+            <p>
+              <strong>¿Por qué invertir el orden de integración?</strong> Existen funciones elementales como $e^{-x^2}$, $\frac{\sin x}{x}$ o $e^{y^3}$ que carecen de antiderivada elemental respecto a una variable, pero al cambiar el orden de integración aparece un factor multiplicativo ($x$ o $y$) derivado de la frontera que permite resolverla instantáneamente por sustitución simple.
+            </p>
+          </div>
+
+          <!-- Traductor de Jerga Formal -->
+          <div class="formal-translator-box">
+            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 25-26) ↔ Español Humano</h4>
+            <div class="translator-grid">
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $\operatorname{cont}(\partial\Omega) = 0 \iff \Omega \text{ es medible Jordan}$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  El borde de la región es una curva delgada y suave (sin grosor ni fractales), por lo que se puede encerrar en un número finito de rectangulitos de área total arbitrariamente pequeña menor a $\varepsilon$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Cita que la frontera es unión finita de grafos de funciones continuas $C^0$, concluyendo que tiene contenido nulo y que $f$ es Riemann-integrable.
+                </div>
+              </div>
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $\iint_\Omega f \, dA = \int_a^b \left( \int_{\phi_1(x)}^{\phi_2(x)} f(x,y) \, dy \right) dx$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  Teorema de Fubini para dominios Tipo 1: primero suma la masa a lo largo de un alambre vertical fijando $x$, y luego desliza ese alambre de izquierda a derecha.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Traza una flecha vertical que atraviese la región. El punto donde entra es el límite inferior en $y$; donde sale es el límite superior.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demostración en 2 Fases -->
+          <div class="proof-anatomy-widget">
+            <div class="proof-anatomy-header">
+              <span class="proof-anatomy-title">🧬 Anatomía de Demostración: Contenido Nulo del Grafo de una Función Continua</span>
+              <div class="proof-phase-tabs">
+                <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Cómo pensarla (Borrador)</button>
+                <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Formal (20/20)</button>
+              </div>
+            </div>
+            <div class="proof-phase-pane active" data-phase="draft">
+              <div class="draft-step-grid">
+                <div class="draft-step-card">
+                  <h5>🎯 1. ¿A qué quiero llegar?</h5>
+                  <p style="font-size:0.85rem; margin:0;">Dado $\varepsilon > 0$, hallar un número <em>finito</em> de rectángulos $R_i$ que cubran la curva $y = f(x)$ en $[a,b]$ con área total $< \varepsilon$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🧰 2. Traducción de Hipótesis</h5>
+                  <p style="font-size:0.85rem; margin:0;">$f$ es continua en el compacto $[a,b] \implies f$ es <strong>uniformemente continua</strong>. Existe $\delta > 0$ tal que si $|x - x'| < \delta$, entonces $|f(x) - f(x')| < \varepsilon / (2(b-a))$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🌉 3. El Puente / Truco</h5>
+                  <p style="font-size:0.85rem; margin:0;">Parte $[a,b]$ en $k$ subintervalos de ancho $< \delta$. En cada pedacito, la altura de la caja es la oscilación $M_i - m_i < \frac{\varepsilon}{2(b-a)}$. El área de cada caja es $\Delta x_i \cdot (M_i - m_i)$, y al sumar sale $< \varepsilon$.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proof-phase-pane" data-phase="formal">
+              <div class="formal-proof-script">
+                <p><strong>Demostración Formal:</strong></p>
+                <p>Sea $f: [a,b] \to \mathbb{R}$ continua y consideremos su grafo $\Gamma(f) = \{ (x, f(x)) \in \mathbb{R}^2 \mid x \in [a,b] \}$. Dado $\varepsilon > 0$ arbitrario:</p>
+                <p>1. Como $[a,b]$ es compacto, por el <strong>Teorema de Heine-Cantor</strong>, $f$ es uniformemente continua en $[a,b]$. Por lo tanto, existe $\delta > 0$ tal que para todo $x, x' \in [a,b]$ con $|x - x'| < \delta$, se tiene $|f(x) - f(x')| < \frac{\varepsilon}{2(b-a)}$.</p>
+                <p>2. Tomemos una partición $P = \{ x_0, x_1, \dots, x_k \}$ de $[a,b]$ con norma $\|P\| < \delta$. Para cada subintervalo $I_i = [x_{i-1}, x_i]$, definimos $m_i = \min_{x \in I_i} f(x)$ y $M_i = \max_{x \in I_i} f(x)$. Por la elección de $\delta$, $M_i - m_i \le \frac{\varepsilon}{2(b-a)}$.</p>
+                <p>3. Consideremos la familia finita de rectángulos cerrados $R_i = I_i \times [m_i, M_i]$ para $i = 1, \dots, k$. Es claro que para todo $x \in I_i$, $(x, f(x)) \in R_i$, de modo que $\Gamma(f) \subseteq \bigcup_{i=1}^k R_i$.</p>
+                <p style="margin-bottom:0;">4. La suma de las áreas de estos rectángulos es:
+                $$\sum_{i=1}^k \operatorname{Area}(R_i) = \sum_{i=1}^k (x_i - x_{i-1})(M_i - m_i) \le \frac{\varepsilon}{2(b-a)} \sum_{i=1}^k (x_i - x_{i-1}) = \frac{\varepsilon}{2(b-a)} (b-a) = \frac{\varepsilon}{2} < \varepsilon.$$
+                Dado que $\varepsilon > 0$ fue arbitrario, concluimos que $\operatorname{cont}(\Gamma(f)) = 0$. $\blacksquare$</p>
+              </div>
+            </div>
+          </div>
         </article>
-
-        <!-- BLOQUE 2: GRÁFICO INTERACTIVO 3D EMBEBIDO -->
-        <div class="visualizer-card embedded-visualizer">
-          <div class="visualizer-header">
-            <div>
-              <h3 class="visualizer-title">Simulador 3D: Región de Integración y Corte Transversal</h3>
-              <p class="visualizer-subtitle">Explora cómo el Teorema de Fubini acumula rebanadas transversales $A(x_0)$ o $A(y_0)$ sobre una región general</p>
-            </div>
-            <div class="visualizer-controls-row">
-              <div class="btn-group">
-                <button type="button" class="btn-toggle t1-mode-btn active" data-mode="type1">Tipo 1 (Rayos dy dx)</button>
-                <button type="button" class="btn-toggle t1-mode-btn" data-mode="type2">Tipo 2 (Rayos dx dy)</button>
-              </div>
-            </div>
-          </div>
-
-          <!-- Contenedor Three.js -->
-          <div class="visualizer-canvas-container" id="t1-canvas-container"></div>
-
-          <!-- Barra de Parámetros -->
-          <div class="visualizer-footer">
-            <div class="slider-control">
-              <label for="t1-scan-slider">Posición del Plano de Corte:</label>
-              <input type="range" id="t1-scan-slider" min="-1.0" max="1.0" step="0.05" value="0.0">
-              <span class="readout-pill" id="t1-scan-readout">0.00</span>
-            </div>
-            <div class="visualizer-legend">
-              <span class="legend-dot" style="background:#38bdf8;"></span> Superficie $z = f(x,y)$
-              <span class="legend-dot" style="background:#22c55e;"></span> Rebanada Transversal
-              <span class="legend-dot" style="background:#a855f7;"></span> Curvas Frontera
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: EXPLICACIÓN SENCILLA, INTUITIVA Y DETALLADA -->
-        <article class="theory-block intuition">
-          <h3 class="intuition-title">💡 Explicación Sencilla e Intuitiva: El Escáner de Rayos Láser</h3>
-          <p>
-            Imagínate que calcular una integral doble $\iint_\Omega f(x,y) dA$ es como <strong>pesar un queso irregular</strong> colocado sobre la mesa:
-          </p>
-          <ol>
-            <li>
-              <strong>Enfoque Tipo 1 (El Pan de Molde Vertical):</strong> Imagina que una máquina corta el queso en rebanadas verticales perpendiculares al eje $X$. En cada posición $x$, el cuchillo entra por la corteza inferior $y = \phi_1(x)$ y sale por la corteza superior $y = \phi_2(x)$. La integral interna $\int_{\phi_1(x)}^{\phi_2(x)} f(x,y) dy$ calcula exactamente el <em>área de esa rebanada individual</em> $A(x)$. Luego, la integral exterior $\int_a^b A(x) dx$ suma todas las rebanadas desde la izquierda ($x = a$) hasta la derecha ($x = b$).
-            </li>
-            <li>
-              <strong>Enfoque Tipo 2 (Rebanadas Horizontales):</strong> Ahora acuesta el queso y córtalo con rebanadas horizontales a altura $y$. En cada altura, una aguja entra por la izquierda en $x = \psi_1(y)$ y sale por la derecha en $x = \psi_2(y)$. Ambas formas deben dar exactamente el mismo peso total, ¡ese es el milagro de Fubini!
-            </li>
-          </ol>
-        </article>
-
-        <!-- BLOQUE 4: TRADUCTOR BILINGÜE DE JERGA FORMAL -->
-        <div class="formal-translator-box">
-          <h4>🔍 Traductor Bilingüe: Jerga Formal de Examen ↔ Español Humano</h4>
-          <table class="translator-table">
-            <thead>
-              <tr>
-                <th style="width:32%;">Símbolo en Examen UNI</th>
-                <th style="width:34%;">En Español Sencillo</th>
-                <th style="width:34%;">¿Qué hacer en tu cuadernillo?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>$\chi_\Omega(x,y) \text{ o } 1_\Omega(x,y)$</td>
-                <td>Función "interruptor": vale 1 si el punto está dentro de $\Omega$, y 0 si está afuera.</td>
-                <td>Sustituye $\iint_\Omega f dA$ por $\iint_B f \cdot \chi_\Omega dA$ para justificar formalmente la extensión por cero.</td>
-              </tr>
-              <tr>
-                <td>$\operatorname{cont}(\partial\Omega) = 0$</td>
-                <td>La frontera es una curva delgada sin grosor (no llena área).</td>
-                <td>Cita: <em>«Como $\partial\Omega$ está formada por gráficas continuas $C^1$ a trozos, tiene contenido nulo y $\Omega$ es Jordan-medible»</em>.</td>
-              </tr>
-              <tr>
-                <td>$\int_a^b dx \int_{\phi_1(x)}^{\phi_2(x)} f dy$</td>
-                <td>Integral iterada Tipo 1.</td>
-                <td>Integra primero respecto a $y$ tratando a $x$ como constante; luego evalúa los límites antes de integrar en $x$.</td>
-              </tr>
-              <tr>
-                <td>$\iint_R \frac{\partial^2 f}{\partial x \partial y} dA$</td>
-                <td>Integral doble de una derivada mixta continua sobre un rectángulo.</td>
-                <td>Aplica el Teorema Fundamental del Cálculo en ambas variables para obtener la alternancia $f(b,d) - f(a,d) - f(b,c) + f(a,c)$.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- BLOQUE 5: ANATOMÍA DE DEMOSTRACIÓN EN 2 FASES -->
-        <div class="proof-anatomy-widget">
-          <div class="proof-widget-header">
-            <div>
-              <span class="proof-badge">🧬 Demostración Clave • PC5 2025-II</span>
-              <h3 class="proof-widget-title">Identidad de Fubini por Simetría: $\int_a^b \int_x^b f(x)f(y) dy dx = \frac{1}{2}\left(\int_a^b f(x)dx\right)^2$</h3>
-            </div>
-            <div class="proof-phase-toggles">
-              <button type="button" class="proof-phase-toggle-btn active" data-phase="heuristic">
-                🧠 Fase 1: Cómo Pensarla (Borrador)
-              </button>
-              <button type="button" class="proof-phase-toggle-btn" data-phase="formal">
-                ✍️ Fase 2: Redacción Formal (20/20)
-              </button>
-            </div>
-          </div>
-
-          <!-- FASE 1: BORRADOR HEURÍSTICO -->
-          <div class="proof-phase-pane active" data-phase="heuristic">
-            <div class="proof-cards-grid">
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 1</div>
-                <h4 class="heuristic-step-title">🎯 ¿A qué quiero llegar?</h4>
-                <p>
-                  El lado derecho es $\frac{1}{2} I_{\text{total}}^2$, que representa la mitad de la integral doble sobre el cuadrado completo $[a,b] \times [a,b]$. El lado izquierdo es una integral sobre un triángulo superior delimitado por $y \ge x$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 2</div>
-                <h4 class="heuristic-step-title">🧰 Ingredientes y Geometría</h4>
-                <p>
-                  El cuadrado $Q = [a,b] \times [a,b]$ se divide exactamente en dos triángulos por la diagonal $y = x$: el triángulo superior $T_1 = \{y \ge x\}$ y el inferior $T_2 = \{y \le x\}$. Como la diagonal tiene área cero, la integral total es la suma de ambas.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 3</div>
-                <h4 class="heuristic-step-title">🌉 El Puente (Simetría)</h4>
-                <p>
-                  La función $g(x,y) = f(x)f(y)$ es perfectamente simétrica: $g(x,y) = g(y,x)$. Al reflejar el triángulo inferior sobre la diagonal, las variables se intercambian y ambas integrales triangulares son numéricamente idénticas. ¡Dos triángulos iguales suman el cuadrado!
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- FASE 2: REDACCIÓN FORMAL -->
-          <div class="proof-phase-pane" data-phase="formal">
-            <div class="formal-proof-content">
-              <p><strong>Demostración:</strong></p>
-              <p>
-                Sea $Q = [a,b] \times [a,b] \subset \mathbb{R}^2$ el cuadrado cartesiano. Como $f$ es continua en $[a,b]$, la función producto $F(x,y) = f(x)f(y)$ es continua en $Q$ y por tanto integrable según Riemann. Por el Teorema de Fubini en rectángulos con separación de variables independientes:
-              </p>
-              <div class="math-display">
-                $$\iint_Q f(x)f(y) \, dA = \left( \int_a^b f(x) \, dx \right) \left( \int_a^b f(y) \, dy \right) = \left( \int_a^b f(x) \, dx \right)^2$$
-              </div>
-              <p>
-                Ahora bien, el cuadrado $Q$ se puede expresar como la unión de dos conjuntos Jordan-medibles $T_1$ y $T_2$:
-              </p>
-              <div class="math-display">
-                $$T_1 = \{ (x,y) \in Q : x \le y \}, \qquad T_2 = \{ (x,y) \in Q : y \le x \}$$
-              </div>
-              <p>
-                Nótese que $T_1 \cap T_2 = \{ (x,x) : x \in [a,b] \}$ es un segmento rectilíneo en $\mathbb{R}^2$, el cual tiene contenido de Jordan nulo. Por la aditividad de la integral respecto al dominio:
-              </p>
-              <div class="math-display">
-                $$\iint_Q f(x)f(y) \, dA = \iint_{T_1} f(x)f(y) \, dA + \iint_{T_2} f(x)f(y) \, dA$$
-              </div>
-              <p>
-                En la segunda integral $\iint_{T_2} f(x)f(y) \, dA$, aplicamos el Teorema de Fubini y renombre de variables mudas ($x \leftrightarrow y$):
-              </p>
-              <div class="math-display">
-                $$\iint_{T_2} f(x)f(y) \, dx \, dy = \int_a^b \left( \int_y^b f(x) \, dx \right) f(y) \, dy = \int_a^b \left( \int_x^b f(y) \, dy \right) f(x) \, dx = \iint_{T_1} f(x)f(y) \, dA$$
-              </div>
-              <p>
-                Sustituyendo esta igualdad en la suma:
-              </p>
-              <div class="math-display">
-                $$2 \iint_{T_1} f(x)f(y) \, dA = \left( \int_a^b f(x) \, dx \right)^2 \implies \int_a^b \left( \int_x^b f(x)f(y) \, dy \right) dx = \frac{1}{2} \left( \int_a^b f(x) \, dx \right)^2 \quad \blacksquare$$
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: BANCO DE EJERCICIOS SECCIONADO DEL NIVEL 0 AL 5 -->
-        <section class="exercise-section">
-          <div class="exercise-section-header">
-            <div>
-              <h3 class="exercise-section-title">Banco de Ejercicios: Subtema 1 (18 Problemas Resueltos)</h3>
-              <p class="exercise-section-desc">Selecciona un nivel de dificultad para filtrar los ejercicios graduados con pistas y desarrollos completos:</p>
-            </div>
-          </div>
-
-          <!-- Barra de Filtros de Nivel -->
-          <div class="level-tabs" data-topic="t1">
-            <button class="level-tab-btn active" data-level="0">Nivel 0 (Principiante)</button>
-            <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
-            <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
-            <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
-            <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
-            <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
-            <button class="level-tab-btn" data-level="all">Ver Todos (18)</button>
-          </div>
-
-          <!-- Contenedor Dinámico donde js/app.js inyecta las tarjetas -->
-          <div class="exercises-container" id="exercises-container-t1"></div>
-        </section>
 
       </div>
+
+      <!-- Barra de Filtros de Nivel de Ejercicios Subtema 1 -->
+      <div class="exercises-header" id="ejercicios-t1">
+        <div>
+          <h2>Banco de Ejercicios: Regiones Generales y Fubini</h2>
+          <p style="color:#94a3b8; font-size:0.9rem;">18 ejercicios rigurosos organizados progresivamente del Nivel 0 al 5.</p>
+        </div>
+        <div class="level-tabs" data-topic="t1">
+          <button class="level-tab-btn active" data-level="0">Nivel 0 (Calentamiento)</button>
+          <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
+          <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
+          <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
+          <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
+          <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
+          <button class="level-tab-btn" data-level="all">Ver Todos</button>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de ejercicios -->
+      <div class="exercises-list" id="exercises-container-t1"></div>
     </section>
 
-    <!-- ===================================================================== -->
-    <!-- SUBTEMA 2: CAMBIO DE VARIABLE EN R² Y POLARES (T2)                   -->
-    <!-- ===================================================================== -->
+    <!-- ========================================================================
+         SECCIÓN 2: CAMBIO DE VARIABLES EN R² Y COORDENADAS POLARES (SESIONES 28-29)
+         ======================================================================== -->
     <section class="topic-section" id="section-t2">
       <div class="topic-grid">
 
-        <!-- BLOQUE 1: DEFINICIONES, TEOREMAS Y PROPIEDADES FORMALES -->
-        <article class="theory-block">
-          <div class="theory-badge">Marco Teórico Riguroso • Sesiones 28 y 29</div>
-          <h2 class="theory-title">2. Teorema de Cambio de Variables en $\mathbb{R}^2$ y Coordenadas Polares</h2>
+        <!-- Tarjeta de Teoría Subtema 2 -->
+        <article class="theory-card">
+          <h2><span>🔄</span> Teorema de Cambio de Variables en $\mathbb{R}^2$ y Coordenadas Polares</h2>
+          <p>
+            El Teorema de Cambio de Variables generaliza la regla de sustitución univariada a integrales múltiples en $\mathbb{R}^2$. Vincula la integral de una función sobre una región deformada $\Omega$ con la integral sobre un dominio paramétrico tratable $S$, escalado por el factor de distorsión volumétrica local dado por el <strong>valor absoluto del determinante Jacobiano</strong> $|\det J_\Phi(u,v)|$.
+          </p>
 
-          <div class="theorem-box">
-            <h4 class="theorem-title">Teorema Fundamental de Cambio de Variables en $\mathbb{R}^2$</h4>
+          <div class="theory-block theorem">
+            <h4>Teorema General de Cambio de Variables en $\mathbb{R}^2$</h4>
             <p>
-              Sean $U, V \subset \mathbb{R}^2$ abiertos y sea $T: U \to V$ una aplicación de clase $C^1$ que es un <strong>difeomorfismo</strong> (inyectiva y con $\det DT(\mathbf{u}) \neq 0$ para todo $\mathbf{u} \in U$). Sea $\Omega \subset U$ un conjunto compacto y Jordan-medible tal que $T(\Omega) \subset V$. Si $f: T(\Omega) \to \mathbb{R}$ es integrable Riemann, entonces:
+              Sean $U \subseteq \mathbb{R}^2$ abierto, $S \subset U$ un conjunto compacto y medible Jordan, y $\Phi: U \to \mathbb{R}^2$ una aplicación de clase $C^1$ que es inyectiva en $\operatorname{int}(S)$ tal que $\det J_\Phi(u,v) \neq 0$ en $\operatorname{int}(S)$.
+              Si $f: \Phi(S) \to \mathbb{R}$ es continua, entonces:
+              $$\iint_{\Phi(S)} f(x,y) \, dx \, dy = \iint_S f(\Phi(u,v)) \, |\det J_\Phi(u,v)| \, du \, dv.$$
             </p>
-            <div class="math-display">
-              $$\iint_{T(\Omega)} f(x,y) \, dx \, dy = \iint_\Omega f(T(u,v)) \cdot |\det DT(u,v)| \, du \, dv$$
-            </div>
-            <p>
-              donde la matriz Jacobiana y su determinante son:
-            </p>
-            <div class="math-display">
-              $$DT(u,v) = \begin{pmatrix} \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\[4pt] \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} \end{pmatrix}, \qquad \det DT(u,v) = \frac{\partial(x,y)}{\partial(u,v)} = \frac{\partial x}{\partial u}\frac{\partial y}{\partial v} - \frac{\partial x}{\partial v}\frac{\partial y}{\partial u}$$
-            </div>
-          </div>
-
-          <div class="theorem-box">
-            <h4 class="theorem-title">Sistemas Notables de Coordenadas en $\mathbb{R}^2$</h4>
-            <ul>
-              <li>
-                <strong>Coordenadas Polares Estándar:</strong> $x = r\cos\theta, \ y = r\sin\theta$, con $r \ge 0, \ \theta \in [0, 2\pi]$.
-                $$\det DT(r,\theta) = r \implies dA = dx \, dy = r \, dr \, d\theta$$
-              </li>
-              <li>
-                <strong>Coordenadas Polares Elípticas:</strong> $x = ar\cos\theta, \ y = br\sin\theta$, con $a, b > 0$.
-                $$\det DT(r,\theta) = ab r \implies dA = ab r \, dr \, d\theta$$
-              </li>
-            </ul>
           </div>
 
           <div class="theory-block caution">
-            <h4 class="caution-title">⚠️ Trampa Frecuente: ¡Olvidar el Valor Absoluto en el Jacobiano!</h4>
+            <h4>¡Cuidado con esta trampa clásica UNI! (Olvidar el valor absoluto del Jacobiano)</h4>
             <p>
-              El factor de escala en la integral es $|\det DT|$, con <strong>valor absoluto</strong>. Si un cambio de variables invierte la orientación geométrica (por ejemplo, $u = y, v = x$, donde $\det DT = -1$), el diferencial de área sigue siendo $+1 \, du \, dv$. Si olvidas el valor absoluto, obtendrás integrales negativas absurdas de funciones estrictamente positivas.
+              El Jacobiano mide la orientación del mapeo. Si inviertes el orden de los ejes al sustituir, el determinante puede resultar negativo (ej. $\det J = -1/2$).
+              <strong>Error letal en examen:</strong> Colocar determinantes negativos multiplicando diferenciales, lo que produciría áreas o volúmenes negativos. La fórmula exige estrictamente el <strong>valor absoluto</strong> $|\det J_\Phi|$.
             </p>
           </div>
+
+          <!-- Visor 3D Interactivo Subtema 2 -->
+          <div class="visualizer-card embedded-visualizer">
+            <div class="visualizer-header">
+              <h3 class="visualizer-title">🎮 Gráfico 3D Interactivo: Transformación Curvilínea y Deformación Malla $(u,v) \mapsto (x,y)$</h3>
+              <span class="touch-hint-badge">👆 Toca y gira en 3D</span>
+            </div>
+            <div class="three-canvas-wrapper" id="t2-canvas-container"></div>
+            <div class="visualizer-controls">
+              <div class="control-group">
+                <label class="control-label" for="t2-morph-slider">Parámetro de Transformación ($t$):</label>
+                <input type="range" class="control-slider" id="t2-morph-slider" min="0" max="1" step="0.05" value="0.0">
+              </div>
+              <div class="visualizer-readout">
+                <span>Distorsión de Malla:</span>
+                <span class="readout-value" id="t2-morph-readout">$t = 0.00$ (Cartesiana Original)</span>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#94a3b8; margin-top:0.75rem; margin-bottom:0;">
+              Desliza el control para observar cómo la cuadrícula plana se transforma suavemente bajo el difeomorfismo polar hacia los sectores circulares.
+            </p>
+          </div>
+
+          <!-- Explicación Intuitiva -->
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <h4 style="color:#38bdf8;">💡 Explicación Sencilla y Detallada (Intuición Operativa)</h4>
+            <p>
+              <strong>¿Por qué aparece el factor $r$ en coordenadas polares?</strong> Imagina un cuadradito diminuto en el plano paramétrico $(r, \theta)$ de dimensiones $\Delta r \times \Delta \theta$. Al mapearlo al plano cartesiano $(x,y)$:
+            </p>
+            <ul style="margin-left: 1.5rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+              <li>El lado radial sigue teniendo longitud $\Delta r$.</li>
+              <li>El lado tangencial es un arco de círculo cuyo ancho depende de la distancia al origen: $\text{arco} = r \Delta \theta$.</li>
+              <li>El área del parche es $\Delta A \approx \Delta r \cdot (r \Delta \theta) = r \, \Delta r \, \Delta \theta$. A mayor radio, mayor es el área que abarca el mismo incremento angular.</li>
+            </ul>
+            <p>
+              El Jacobiano $\det J = r$ no es un artificio algebraico, sino la tasa exacta de estiramiento del espacio en función del radio polar.
+            </p>
+          </div>
+
+          <!-- Traductor de Jerga Formal -->
+          <div class="formal-translator-box">
+            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 28-29) ↔ Español Humano</h4>
+            <div class="translator-grid">
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $|\det J_\Phi(u,v)| = \left| \frac{\partial(x,y)}{\partial(u,v)} \right|$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  El factor que indica cuántas veces se agranda o encoge un trocito microscópico de área al cambiar del plano $(u,v)$ al plano $(x,y)$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Calcula el determinante de la matriz $2\times 2$ con derivadas parciales cruzadas y aplica siempre valor absoluto positivo.
+                </div>
+              </div>
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $dx \, dy = r \, dr \, d\theta$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  Regla de oro de polares: cada vez que cambias $x^2+y^2$ por $r^2$, debes pagar el peaje matemático agregando una $r$ al diferencial.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Multiplica inmediatamente tu integrando por $r$ antes de buscar cualquier antiderivada.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demostración en 2 Fases -->
+          <div class="proof-anatomy-widget">
+            <div class="proof-anatomy-header">
+              <span class="proof-anatomy-title">🧬 Anatomía de Demostración: El Jacobiano como Factor de Dilatación Local</span>
+              <div class="proof-phase-tabs">
+                <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Cómo pensarla (Borrador)</button>
+                <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Formal (20/20)</button>
+              </div>
+            </div>
+            <div class="proof-phase-pane active" data-phase="draft">
+              <div class="draft-step-grid">
+                <div class="draft-step-card">
+                  <h5>🎯 1. ¿A qué quiero llegar?</h5>
+                  <p style="font-size:0.85rem; margin:0;">Probar que una celda infinitesimal $du \times dv$ es mapeada a un paralelogramo generado por las derivadas parciales de área $|\det J| du dv$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🧰 2. Traducción de Hipótesis</h5>
+                  <p style="font-size:0.85rem; margin:0;">Aproximación lineal de primer orden: $\Phi(u+\Delta u, v) - \Phi(u,v) \approx \frac{\partial\Phi}{\partial u} \Delta u$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🌉 3. El Puente / Truco</h5>
+                  <p style="font-size:0.85rem; margin:0;">El área del paralelogramo generado por dos vectores en $\mathbb{R}^2$ es el valor absoluto de su producto cruz bidimensional, que coincide con el determinante de la matriz con dichos vectores columna.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proof-phase-pane" data-phase="formal">
+              <div class="formal-proof-script">
+                <p><strong>Demostración Formal:</strong></p>
+                <p>Sea $\Phi(u,v) = (x(u,v), y(u,v))$ de clase $C^1$. Consideremos un rectángulo elemental $R = [u_0, u_0 + \Delta u] \times [v_0, v_0 + \Delta v]$.</p>
+                <p>1. Los vectores generadores de los lados adyacentes de la imagen deformada $\Phi(R)$ son:
+                $$\mathbf{a} = \Phi(u_0 + \Delta u, v_0) - \Phi(u_0, v_0) = \frac{\partial\Phi}{\partial u}(u_0, v_0) \Delta u + o(\Delta u),$$
+                $$\mathbf{b} = \Phi(u_0, v_0 + \Delta v) - \Phi(u_0, v_0) = \frac{\partial\Phi}{\partial v}(u_0, v_0) \Delta v + o(\Delta v).$$</p>
+                <p>2. El área del paralelogramo generado por $\mathbf{a}$ y $\mathbf{b}$ es dada por la norma del producto vectorial en $\mathbb{R}^3$:
+                $$\operatorname{Area}(\mathbf{a}, \mathbf{b}) = \left| \left( \frac{\partial x}{\partial u} \mathbf{i} + \frac{\partial y}{\partial u} \mathbf{j} \right) \times \left( \frac{\partial x}{\partial v} \mathbf{i} + \frac{\partial y}{\partial v} \mathbf{j} \right) \right| \Delta u \, \Delta v.$$</p>
+                <p style="margin-bottom:0;">3. Desarrollando el determinante fundamental:
+                $$\operatorname{Area} = \left| \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u} \right| \Delta u \, \Delta v = |\det J_\Phi(u_0, v_0)| \Delta u \, \Delta v.$$
+                Al tomar el límite cuando $\|P\| \to 0$, la suma de Riemann converge a la integral de volumen escalada por $|\det J_\Phi|$. $\blacksquare$</p>
+              </div>
+            </div>
+          </div>
         </article>
-
-        <!-- BLOQUE 2: GRÁFICO INTERACTIVO 3D EMBEBIDO -->
-        <div class="visualizer-card embedded-visualizer">
-          <div class="visualizer-header">
-            <div>
-              <h3 class="visualizer-title">Simulador 3D: Deformación de Malla y Factor de Escala Jacobiano</h3>
-              <p class="visualizer-subtitle">Observa cómo la cuadrícula cartesiana $(u,v)$ se pliega suavemente en anillos y radios polares $(r,\theta)$</p>
-            </div>
-          </div>
-
-          <div class="visualizer-canvas-container" id="t2-canvas-container"></div>
-
-          <div class="visualizer-footer">
-            <div class="slider-control">
-              <label for="t2-morph-slider">Factor de Transformación $(u,v) \mapsto (x,y)$:</label>
-              <input type="range" id="t2-morph-slider" min="0" max="1" step="0.02" value="0.0">
-              <span class="readout-pill" id="t2-morph-readout">0%</span>
-            </div>
-            <div class="visualizer-legend">
-              <span class="legend-dot" style="background:#38bdf8;"></span> Líneas $u = r = \text{cte}$
-              <span class="legend-dot" style="background:#a855f7;"></span> Rayos $v = \theta = \text{cte}$
-              <span class="legend-dot" style="background:#22c55e;"></span> Parche Diferencial $dA = r \, dr \, d\theta$
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: EXPLICACIÓN SENCILLA, INTUITIVA Y DETALLADA -->
-        <article class="theory-block intuition">
-          <h3 class="intuition-title">💡 Explicación Sencilla e Intuitiva: La Lámina Elástica y la Lupa Jacobiana</h3>
-          <p>
-            ¿Por qué aparece un factor extra $r$ al cambiar a polares?
-          </p>
-          <p>
-            Imagina que tienes una lámina de goma plana cuadriculada con pequeños cuadraditos de tamaño $dr \times d\theta$. Para convertirla en coordenadas polares en el plano real, tienes que doblar y estirar esa lámina alrededor del origen:
-          </p>
-          <ul>
-            <li>Cerca del centro ($r \approx 0$), un ángulo de $d\theta$ abarca un arco microscópico casi nulo.</li>
-            <li>Lejos del centro (para $r$ grande), ese mismo ángulo de $d\theta$ abre un arco mucho más largo de longitud $r \cdot d\theta$.</li>
-          </ul>
-          <p>
-            Por eso, el trapecio circular tiene lados $dr$ y $r \, d\theta$, dándonos un área $dA = r \, dr \, d\theta$. El determinante Jacobiano no es magia negra: es simplemente una <strong>lupa local</strong> que mide cuántas veces se infla o se comprime el área de cada cuadradito infinitesimal al ser transformado.
-          </p>
-        </article>
-
-        <!-- BLOQUE 4: TRADUCTOR BILINGÜE DE JERGA FORMAL -->
-        <div class="formal-translator-box">
-          <h4>🔍 Traductor Bilingüe: Jerga Formal de Examen ↔ Español Humano</h4>
-          <table class="translator-table">
-            <thead>
-              <tr>
-                <th style="width:32%;">Símbolo en Examen UNI</th>
-                <th style="width:34%;">En Español Sencillo</th>
-                <th style="width:34%;">¿Qué hacer en tu cuadernillo?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>$\frac{\partial(x,y)}{\partial(u,v)}$</td>
-                <td>Determinante de la matriz de derivadas parciales (factor de dilatación de área).</td>
-                <td>Calcula la matriz $2\times 2$, halla su determinante $ad - bc$ y tómale valor absoluto antes de escribir $dx dy = |J| du dv$.</td>
-              </tr>
-              <tr>
-                <td>$x^2 + y^2 = 2ax$</td>
-                <td>Circunferencia desplazada tangente al eje $Y$ con centro en $(a,0)$ y radio $a$.</td>
-                <td>Sustituye $x^2+y^2 = r^2$ y $x = r\cos\theta$ para obtener la ecuación polar $r = 2a\cos\theta$ con $-\frac{\pi}{2} \le \theta \le \frac{\pi}{2}$.</td>
-              </tr>
-              <tr>
-                <td>$T \in C^1(U, V)$ difeomorfismo</td>
-                <td>Mapeo suave, biyectivo y reversible sin arrugas ni auto-intersecciones.</td>
-                <td>Verifica que $\det DT \neq 0$ en el interior y que no cubra la región dos veces.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- BLOQUE 5: ANATOMÍA DE DEMOSTRACIÓN EN 2 FASES -->
-        <div class="proof-anatomy-widget">
-          <div class="proof-widget-header">
-            <div>
-              <span class="proof-badge">🧬 Demostración Clave • Teorema de Cambio de Variables</span>
-              <h3 class="proof-widget-title">Deducción del Factor de Escala de Área a partir de Vectores Tangentes</h3>
-            </div>
-            <div class="proof-phase-toggles">
-              <button type="button" class="proof-phase-toggle-btn active" data-phase="heuristic">
-                🧠 Fase 1: Cómo Pensarla (Borrador)
-              </button>
-              <button type="button" class="proof-phase-toggle-btn" data-phase="formal">
-                ✍️ Fase 2: Redacción Formal (20/20)
-              </button>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane active" data-phase="heuristic">
-            <div class="proof-cards-grid">
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 1</div>
-                <h4 class="heuristic-step-title">🎯 ¿A qué quiero llegar?</h4>
-                <p>
-                  Queremos ver por qué un rectángulo infinitesimal de lados $du$ y $dv$ en el plano $(u,v)$ se convierte en un paralelogramo de área $|\det DT| \, du \, dv$ en el plano $(x,y)$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 2</div>
-                <h4 class="heuristic-step-title">🧰 Ingredientes Vectoriales</h4>
-                <p>
-                  Por la definición de derivada, los lados del cuadrito se transforman en los vectores tangentes: $\mathbf{a} \approx T(u+du, v) - T(u,v) = \frac{\partial T}{\partial u} du$, y $\mathbf{b} \approx \frac{\partial T}{\partial v} dv$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 3</div>
-                <h4 class="heuristic-step-title">🌉 El Área del Paralelogramo</h4>
-                <p>
-                  El área del paralelogramo generado por dos vectores 2D $\mathbf{a} = (a_1, a_2)$ y $\mathbf{b} = (b_1, b_2)$ es la magnitud de su producto cruz: $|a_1 b_2 - a_2 b_1|$. Al factorizar $du \, dv$, aparece exactamente el determinante Jacobiano.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane" data-phase="formal">
-            <div class="formal-proof-content">
-              <p><strong>Demostración Formal:</strong></p>
-              <p>
-                Sea $T(u,v) = (x(u,v), y(u,v))$ diferenciable en un punto $p_0 = (u_0, v_0)$. Consideremos el rectángulo $R_0 = [u_0, u_0 + \Delta u] \times [v_0, v_0 + \Delta v]$. Por el desarrollo de Taylor de primer orden:
-              </p>
-              <div class="math-display">
-                $$T(u_0 + \Delta u, v_0) - T(u_0, v_0) = \frac{\partial T}{\partial u}(p_0) \Delta u + o(\Delta u)$$
-                $$T(u_0, v_0 + \Delta v) - T(u_0, v_0) = \frac{\partial T}{\partial v}(p_0) \Delta v + o(\Delta v)$$
-              </div>
-              <p>
-                Los vectores adyacentes del paralelogramo tangente que aproxima la imagen $T(R_0)$ son:
-              </p>
-              <div class="math-display">
-                $$\mathbf{v}_1 = \begin{pmatrix} \frac{\partial x}{\partial u} \Delta u \\[3pt] \frac{\partial y}{\partial u} \Delta u \end{pmatrix}, \qquad \mathbf{v}_2 = \begin{pmatrix} \frac{\partial x}{\partial v} \Delta v \\[3pt] \frac{\partial y}{\partial v} \Delta v \end{pmatrix}$$
-              </div>
-              <p>
-                El área de este paralelogramo viene dada por el valor absoluto del determinante de la matriz formada por dichos vectores columnas:
-              </p>
-              <div class="math-display">
-                $$\operatorname{Area}(\mathbf{v}_1, \mathbf{v}_2) = \left| \det \begin{pmatrix} \frac{\partial x}{\partial u}\Delta u & \frac{\partial x}{\partial v}\Delta v \\[4pt] \frac{\partial y}{\partial u}\Delta u & \frac{\partial y}{\partial v}\Delta v \end{pmatrix} \right| = \left| \frac{\partial x}{\partial u}\frac{\partial y}{\partial v} - \frac{\partial x}{\partial v}\frac{\partial y}{\partial u} \right| \Delta u \Delta v = |\det DT(p_0)| \Delta u \Delta v$$
-              </div>
-              <p>
-                Dividiendo entre el área original $\Delta u \Delta v$ y tomando el límite cuando $\Delta u, \Delta v \to 0$, se demuestra que el factor de dilatación diferencial local es rigurosamente $|\det DT(p_0)|$. $\blacksquare$
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: BANCO DE EJERCICIOS SECCIONADO DEL NIVEL 0 AL 5 -->
-        <section class="exercise-section">
-          <div class="exercise-section-header">
-            <div>
-              <h3 class="exercise-section-title">Banco de Ejercicios: Subtema 2 (18 Problemas Resueltos)</h3>
-              <p class="exercise-section-desc">Selecciona un nivel de dificultad para filtrar los ejercicios graduados con pistas y desarrollos completos:</p>
-            </div>
-          </div>
-
-          <div class="level-tabs" data-topic="t2">
-            <button class="level-tab-btn active" data-level="0">Nivel 0 (Principiante)</button>
-            <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
-            <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
-            <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
-            <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
-            <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
-            <button class="level-tab-btn" data-level="all">Ver Todos (18)</button>
-          </div>
-
-          <div class="exercises-container" id="exercises-container-t2"></div>
-        </section>
 
       </div>
+
+      <!-- Barra de Filtros de Nivel de Ejercicios Subtema 2 -->
+      <div class="exercises-header" id="ejercicios-t2">
+        <div>
+          <h2>Banco de Ejercicios: Cambio de Variable en R² y Polares</h2>
+          <p style="color:#94a3b8; font-size:0.9rem;">18 ejercicios rigurosos organizados progresivamente del Nivel 0 al 5.</p>
+        </div>
+        <div class="level-tabs" data-topic="t2">
+          <button class="level-tab-btn active" data-level="0">Nivel 0 (Calentamiento)</button>
+          <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
+          <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
+          <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
+          <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
+          <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
+          <button class="level-tab-btn" data-level="all">Ver Todos</button>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de ejercicios -->
+      <div class="exercises-list" id="exercises-container-t2"></div>
     </section>
 
-    <!-- ===================================================================== -->
-    <!-- SUBTEMA 3: INTEGRALES TRIPLES EN CARTESIANAS (T3)                     -->
-    <!-- ===================================================================== -->
+    <!-- ========================================================================
+         SECCIÓN 3: INTEGRALES TRIPLES EN CARTESIANAS (SESIONES 25 Y 27)
+         ======================================================================== -->
     <section class="topic-section" id="section-t3">
       <div class="topic-grid">
 
-        <!-- BLOQUE 1: DEFINICIONES, TEOREMAS Y PROPIEDADES FORMALES -->
-        <article class="theory-block">
-          <div class="theory-badge">Marco Teórico Riguroso • Sesiones 25 y 27</div>
-          <h2 class="theory-title">3. Integrales Triples sobre Sólidos Tipos 1, 2 y 3 en $\mathbb{R}^3$</h2>
-          
+        <!-- Tarjeta de Teoría Subtema 3 -->
+        <article class="theory-card">
+          <h2><span>🧊</span> Integrales Triples Cartesianas y los 6 Órdenes de Integración de Fubini</h2>
           <p>
-            Sea $E \subset \mathbb{R}^3$ un sólido acotado y Jordan-medible. La integral triple de una función acotada $f: E \to \mathbb{R}$ se define mediante la extensión por cero sobre una caja paralelepípeda contenedora $B = [a,b] \times [c,d] \times [p,q] \supset E$.
+            Una integral triple evalúa la acumulación de una densidad escalar $f(x,y,z)$ en un sólido acotado $\Omega \subset \mathbb{R}^3$. La geometría del sólido determina cuál de los 6 órdenes posibles de integración ($dz dy dx, dz dx dy, dy dz dx, \dots$) minimiza la complejidad algebraica y evita la partición del dominio en múltiples regiones disjuntas.
           </p>
 
-          <div class="theorem-box">
-            <h4 class="theorem-title">Clasificación Canónica de Sólidos en el Espacio Tridimensional</h4>
-            <ul>
-              <li>
-                <strong>Sólido Tipo 1 (Proyección en el Plano $XY$):</strong>
-                $$E = \left\{ (x,y,z) : (x,y) \in D_{xy}, \ u_1(x,y) \le z \le u_2(x,y) \right\}$$
-                $$\iiint_E f(x,y,z) \, dV = \iint_{D_{xy}} \left( \int_{u_1(x,y)}^{u_2(x,y)} f(x,y,z) \, dz \right) dA$$
-              </li>
-              <li>
-                <strong>Sólido Tipo 2 (Proyección en el Plano $XZ$):</strong>
-                $$E = \left\{ (x,y,z) : (x,z) \in D_{xz}, \ v_1(x,z) \le y \le v_2(x,z) \right\}$$
-                $$\iiint_E f(x,y,z) \, dV = \iint_{D_{xz}} \left( \int_{v_1(x,z)}^{v_2(x,z)} f(x,y,z) \, dy \right) dA$$
-              </li>
-              <li>
-                <strong>Sólido Tipo 3 (Proyección en el Plano $YZ$):</strong>
-                $$E = \left\{ (x,y,z) : (y,z) \in D_{yz}, \ w_1(y,z) \le x \le w_2(y,z) \right\}$$
-                $$\iiint_E f(x,y,z) \, dV = \iint_{D_{yz}} \left( \int_{w_1(y,z)}^{w_2(y,z)} f(x,y,z) \, dx \right) dA$$
-              </li>
-            </ul>
+          <div class="theory-block theorem">
+            <h4>Clasificación de Sólidos Elementales en $\mathbb{R}^3$</h4>
+            <p>
+              Un sólido $\Omega \subset \mathbb{R}^3$ es <strong>Tipo 1</strong> si está acotado entre dos superficies z-techo y z-piso continuas sobre una proyección plana $D_{xy} \subset \mathbb{R}^2$:
+              $$\Omega = \left\{ (x,y,z) \in \mathbb{R}^3 \mid (x,y) \in D_{xy}, \; z_1(x,y) \le z \le z_2(x,y) \right\}.$$
+              Por Fubini, la integral triple se descompone en:
+              $$\iiint_\Omega f(x,y,z) \, dV = \iint_{D_{xy}} \left( \int_{z_1(x,y)}^{z_2(x,y)} f(x,y,z) \, dz \right) dA.$$
+              Los sólidos <strong>Tipo 2</strong> proyectan sobre el plano $YZ$ con $x_1(y,z) \le x \le x_2(y,z)$, y los <strong>Tipo 3</strong> sobre el plano $XZ$ con $y_1(x,z) \le y \le y_2(x,z)$.
+            </p>
           </div>
 
           <div class="theory-block caution">
-            <h4 class="caution-title">⚠️ Trampa Clásica de Examen UNI (Los 6 Órdenes de Integración)</h4>
+            <h4>¡Cuidado con esta trampa clásica UNI! (Intersección de superficies techo-piso)</h4>
             <p>
-              Existen exactamente $3! = 6$ órdenes posibles para calcular una integral triple iterada: $dz dy dx, dz dx dy, dy dz dx, dy dx dz, dx dz dy, dx dy dz$. Si eliges la proyección equivocada, una superficie puede 'taparse a sí misma' requiriendo partir la integral en dos o tres trozos innecesarios. Busca siempre la cara proyectada que tenga la forma más simple (disco, rectángulo o triángulo).
+              La sombra o proyección $D_{xy}$ NO es un dato arbitrario: se deduce resolviendo la curva de intersección espacial $z_1(x,y) = z_2(x,y)$.
+              <strong>Trampa común:</strong> Olvidar proyectar la silueta ecuatorial cuando el sólido está delimitado por superficies cerradas (ej. esferas o elipsoides), omitiendo parte del volumen en los extremos laterales.
             </p>
           </div>
+
+          <!-- Visor 3D Interactivo Subtema 3 -->
+          <div class="visualizer-card embedded-visualizer">
+            <div class="visualizer-header">
+              <h3 class="visualizer-title">🎮 Gráfico 3D Interactivo: Sólido Tetraédrico y Sombra Proyectada</h3>
+              <span class="touch-hint-badge">👆 Toca y gira en 3D</span>
+            </div>
+            <div class="three-canvas-wrapper" id="t3-canvas-container"></div>
+            <div class="visualizer-controls">
+              <div class="control-group">
+                <label class="control-label" for="t3-slice-slider">Plano de Corte $z$:</label>
+                <input type="range" class="control-slider" id="t3-slice-slider" min="0" max="1" step="0.05" value="0.5">
+              </div>
+              <div class="visualizer-readout">
+                <span>Corte Horizontal:</span>
+                <span class="readout-value" id="t3-slice-readout">$z = 0.50$ (Sección Triangular)</span>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#94a3b8; margin-top:0.75rem; margin-bottom:0;">
+              Explora las rebanadas horizontales del tetraedro canónico $x + y + z \le 1$ observando cómo varía el área de la sección triangular con la cota $z$.
+            </p>
+          </div>
+
+          <!-- Explicación Intuitiva -->
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <h4 style="color:#38bdf8;">💡 Explicación Sencilla y Detallada (Intuición Operativa)</h4>
+            <p>
+              <strong>¿Cómo imaginarse una integral triple?</strong> Imagina que tienes una linterna en el infinito apuntando hacia abajo a lo largo del eje $Z$:
+            </p>
+            <ul style="margin-left: 1.5rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+              <li><strong>Paso 1 (La Sombra):</strong> El sólido bloquea la luz y proyecta una sombra bidimensional $D_{xy}$ en el suelo (plano $XY$). Esa sombra define los límites de las dos integrales exteriores.</li>
+              <li><strong>Paso 2 (El Hilo Vertical):</strong> Te colocas en cualquier punto $(x,y)$ dentro de la sombra y lanzas un rayo láser hacia arriba. El rayo penetra el sólido por la superficie piso $z = z_1(x,y)$ y sale por la superficie techo $z = z_2(x,y)$. Esos son tus límites de la integral más interna.</li>
+              <li><strong>Paso 3 (La Acumulación):</strong> La integral más interna $\int_{z_1}^{z_2} f dz$ suma la masa a lo largo de esa varilla o hilo. Luego la integral doble barre todas las varillas que caen dentro de la sombra. ¡Si el foco está en la pared de enfrente, tienes un sólido Tipo 2 o Tipo 3!</li>
+            </ul>
+          </div>
+
+          <!-- Traductor de Jerga Formal -->
+          <div class="formal-translator-box">
+            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 25, 27) ↔ Español Humano</h4>
+            <div class="translator-grid">
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $\operatorname{Vol}(\Omega) = \iiint_\Omega 1 \, dV$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  El volumen espacial de un cuerpo es la integral triple de la función constante 1 sobre dicho sólido.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Plantea los 3 pares de límites e integra la función unidad sin olvidar ningún diferencial.
+                </div>
+              </div>
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $\operatorname{Proy}_{XY}(\Omega)$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  La silueta o sombra plana que deja el sólido sobre el plano cartesiano $XY$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Elimina la variable $z$ igualando las superficies frontera para hallar la curva borde de la sombra plana.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demostración en 2 Fases -->
+          <div class="proof-anatomy-widget">
+            <div class="proof-anatomy-header">
+              <span class="proof-anatomy-title">🧬 Anatomía de Demostración: Equivalencia de Órdenes de Integración sobre un Cilindro Truncado</span>
+              <div class="proof-phase-tabs">
+                <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Cómo pensarla (Borrador)</button>
+                <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Formal (20/20)</button>
+              </div>
+            </div>
+            <div class="proof-phase-pane active" data-phase="draft">
+              <div class="draft-step-grid">
+                <div class="draft-step-card">
+                  <h5>🎯 1. ¿A qué quiero llegar?</h5>
+                  <p style="font-size:0.85rem; margin:0;">Demostrar que $\int_0^1 dx \int_0^1 dy \int_0^{x+y} dz = \int_0^1 dx \int_0^x dz \int_0^1 dy + \dots$ dan exactamente el mismo valor $1$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🧰 2. Traducción de Hipótesis</h5>
+                  <p style="font-size:0.85rem; margin:0;">El integrando es $f(x,y,z) = 1$ continuo en el dominio compacto medible Jordan $\Omega$. Fubini garantiza que las 6 permutaciones de integrales iteradas existen y coinciden.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🌉 3. El Puente / Truco</h5>
+                  <p style="font-size:0.85rem; margin:0;">Al integrar primero en $z$: $\int_0^{x+y} dz = x + y$. Al integrar luego en $[0,1] \times [0,1]$: $\int_0^1 (x + 1/2) dx = 1/2 + 1/2 = 1$.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proof-phase-pane" data-phase="formal">
+              <div class="formal-proof-script">
+                <p><strong>Demostración Formal:</strong></p>
+                <p>Sea $\Omega = \{ (x,y,z) \in \mathbb{R}^3 \mid 0 \le x \le 1, \; 0 \le y \le 1, \; 0 \le z \le x + y \}$.</p>
+                <p>1. <strong>Orden $dz \, dy \, dx$ (Tipo 1):</strong>
+                $$I = \int_0^1 dx \int_0^1 dy \int_0^{x+y} dz = \int_0^1 dx \int_0^1 (x + y) dy = \int_0^1 \left[ xy + \frac{y^2}{2} \right]_0^1 dx = \int_0^1 \left( x + \frac{1}{2} \right) dx = \left[ \frac{x^2}{2} + \frac{x}{2} \right]_0^1 = 1.$$</p>
+                <p style="margin-bottom:0;">2. <strong>Orden $dy \, dz \, dx$ (Tipo 3 descompuesto):</strong>
+                Para cada $x \in [0,1]$, la cota $z$ varía de $0$ a $x + 1$. El plano $z$ corta la superficie en dos regímenes: para $z \le x$, $y$ varía de $0$ a $1$; para $x < z \le x + 1$, $y$ varía de $z - x$ a $1$.
+                Al sumar ambas integrales iteradas: $\int_0^x 1 \, dz + \int_x^{x+1} (1 - (z-x)) dz = x + 1/2$. Al integrar respecto a $x$ de $0$ a $1$, el resultado es exactamente $1$.
+                Por el <strong>Teorema de Fubini</strong>, ambas integrales iteradas representan la medida de Jordan volumétrica del mismo sólido continuo. $\blacksquare$</p>
+              </div>
+            </div>
+          </div>
         </article>
-
-        <!-- BLOQUE 2: GRÁFICO INTERACTIVO 3D EMBEBIDO -->
-        <div class="visualizer-card embedded-visualizer">
-          <div class="visualizer-header">
-            <div>
-              <h3 class="visualizer-title">Simulador 3D: Sólidos Espaciales y Proyecciones Coordenadas</h3>
-              <p class="visualizer-subtitle">Conmuta interactivamente entre las sombras de los planos $XY$, $XZ$, $YZ$ y desplaza el plano de corte horizontal</p>
-            </div>
-            <div class="visualizer-controls-row">
-              <div class="btn-group">
-                <button type="button" class="btn-toggle t3-proj-btn active" data-proj="xy">Proyección XY (Tipo 1)</button>
-                <button type="button" class="btn-toggle t3-proj-btn" data-proj="xz">Proyección XZ (Tipo 2)</button>
-                <button type="button" class="btn-toggle t3-proj-btn" data-proj="yz">Proyección YZ (Tipo 3)</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="visualizer-canvas-container" id="t3-canvas-container"></div>
-
-          <div class="visualizer-footer">
-            <div class="slider-control">
-              <label for="t3-slice-slider">Altura del Plano de Corte $z = z_0$:</label>
-              <input type="range" id="t3-slice-slider" min="0.2" max="2.8" step="0.1" value="1.8">
-              <span class="readout-pill" id="t3-slice-readout">1.80</span>
-            </div>
-            <div class="visualizer-legend">
-              <span class="legend-dot" style="background:#38bdf8;"></span> Superficie Paraboloide
-              <span class="legend-dot" style="background:#22c55e;"></span> Sombra Proyectada
-              <span class="legend-dot" style="background:#e11d48;"></span> Sección Transversal
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: EXPLICACIÓN SENCILLA, INTUITIVA Y DETALLADA -->
-        <article class="theory-block intuition">
-          <h3 class="intuition-title">💡 Explicación Sencilla e Intuitiva: Las Sombras y el Hilo de Perlas</h3>
-          <p>
-            Imagina que tienes una papa tridimensional suspendida en el aire en un cuarto oscuro:
-          </p>
-          <ol>
-            <li>
-              <strong>Paso 1 (La Sombra 2D):</strong> Enciendes un foco en el techo. La papa proyecta una sombra plana sobre el piso ($XY$). Esa sombra es la región plana $D_{xy}$.
-            </li>
-            <li>
-              <strong>Paso 2 (El Hilo Vertical):</strong> Te paras en un punto $(x,y)$ de esa sombra y disparas una aguja hacia arriba. La aguja perfora la papa primero por su piel inferior $z = u_1(x,y)$ y sale por su piel superior $z = u_2(x,y)$.
-            </li>
-            <li>
-              <strong>Paso 3 (La Acumulación):</strong> La integral más interna $\int_{u_1}^{u_2} f dz$ suma la masa a lo largo de esa varilla o hilo. Luego la integral doble barre todas las varillas que caen dentro de la sombra. ¡Si el foco está en la pared de enfrente, tienes un sólido Tipo 2 o Tipo 3!
-            </li>
-          </ol>
-        </article>
-
-        <!-- BLOQUE 4: TRADUCTOR BILINGÜE DE JERGA FORMAL -->
-        <div class="formal-translator-box">
-          <h4>🔍 Traductor Bilingüe: Jerga Formal de Examen ↔ Español Humano</h4>
-          <table class="translator-table">
-            <thead>
-              <tr>
-                <th style="width:32%;">Símbolo en Examen UNI</th>
-                <th style="width:34%;">En Español Sencillo</th>
-                <th style="width:34%;">¿Qué hacer en tu cuadernillo?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>$\operatorname{Proy}_{XY}(E)$ o $D_{xy}$</td>
-                <td>La sombra del sólido aplastada sobre el plano cartesiano $XY$.</td>
-                <td>Haz $z = 0$ o elimina la variable $z$ entre las superficies que delimitan el sólido para hallar las curvas de la sombra plana.</td>
-              </tr>
-              <tr>
-                <td>$dV = dx \, dy \, dz$</td>
-                <td>Volumen infinitesimal de un ladrillito paralelepípedo.</td>
-                <td>Elige el orden iterado más conveniente según la forma de la sombra (ej. $dz dy dx$).</td>
-              </tr>
-              <tr>
-                <td>$\operatorname{Vol}(E) = \iiint_E 1 \, dV$</td>
-                <td>El volumen euclidiano clásico del cuerpo sólido en 3D.</td>
-                <td>Integra la función constante 1 sobre los límites del sólido.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- BLOQUE 5: ANATOMÍA DE DEMOSTRACIÓN EN 2 FASES -->
-        <div class="proof-anatomy-widget">
-          <div class="proof-widget-header">
-            <div>
-              <span class="proof-badge">🧬 Demostración Clave • Fubini Tridimensional</span>
-              <h3 class="proof-widget-title">Derivadas Parciales de Tercer Orden: $\iiint_B rac{\partial^3 f}{\partial x \partial y \partial z} dV = \Delta_{x,y,z} f$</h3>
-            </div>
-            <div class="proof-phase-toggles">
-              <button type="button" class="proof-phase-toggle-btn active" data-phase="heuristic">
-                🧠 Fase 1: Cómo Pensarla (Borrador)
-              </button>
-              <button type="button" class="proof-phase-toggle-btn" data-phase="formal">
-                ✍️ Fase 2: Redacción Formal (20/20)
-              </button>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane active" data-phase="heuristic">
-            <div class="proof-cards-grid">
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 1</div>
-                <h4 class="heuristic-step-title">🎯 Objetivo</h4>
-                <p>
-                  Probar que integrar una derivada de orden 3 sobre una caja 3D $[a,b] 	imes [c,d] 	imes [p,q]$ produce una suma alternada de $f$ evaluada en los 8 vértices del paralelepípedo.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 2</div>
-                <h4 class="heuristic-step-title">🧰 Estrategia en Cascada</h4>
-                <p>
-                  Aplicar el Teorema Fundamental del Cálculo tres veces seguidas, una para cada dimensión: primero en $z$ (2 términos), luego en $y$ (4 términos), y finalmente en $x$ (8 términos).
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 3</div>
-                <h4 class="heuristic-step-title">🌉 Signos de los Vértices</h4>
-                <p>
-                  Cada aplicación del TFC genera un signo menos para el límite inferior. En tres dimensiones, el vértice $(x_i, y_j, z_k)$ lleva un signo $(-1)^{3 - (i+j+k)}$.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane" data-phase="formal">
-            <div class="formal-proof-content">
-              <p><strong>Demostración Formal:</strong></p>
-              <p>
-                Sea $B = [a,b] \times [c,d] \times [p,q]$ y sea $f$ de clase $C^3(B)$. Por continuidad de las derivadas parciales, aplicamos el Teorema de Fubini en el orden $dz \, dy \, dx$:
-              </p>
-              <div class="math-display">
-                $$\iiint_B \frac{\partial^3 f}{\partial x \partial y \partial z} \, dV = \int_a^b \left[ \int_c^d \left( \int_p^q \frac{\partial}{\partial z}\left( \frac{\partial^2 f}{\partial x \partial y} \right) dz \right) dy \right] dx$$
-              </div>
-              <p>
-                Por el Teorema Fundamental del Cálculo en la variable $z$:
-              </p>
-              <div class="math-display">
-                $$\int_p^q \frac{\partial}{\partial z}\left( \frac{\partial^2 f}{\partial x \partial y} \right) dz = \frac{\partial^2 f}{\partial x \partial y}(x, y, q) - \frac{\partial^2 f}{\partial x \partial y}(x, y, p)$$
-              </div>
-              <p>
-                Integrando respecto a $y$ en $[c, d]$:
-              </p>
-              <div class="math-display">
-                $$\int_c^d \left[ \frac{\partial^2 f}{\partial x \partial y}(x, y, q) - \frac{\partial^2 f}{\partial x \partial y}(x, y, p) \right] dy = \left( \frac{\partial f}{\partial x}(x, d, q) - \frac{\partial f}{\partial x}(x, c, q) \right) - \left( \frac{\partial f}{\partial x}(x, d, p) - \frac{\partial f}{\partial x}(x, c, p) \right)$$
-              </div>
-              <p>
-                Finalmente, integrando los cuatro sumandos respecto a $x$ en $[a, b]$, cada uno genera la diferencia de evaluaciones en $b$ menos en $a$, resultando en la combinación lineal exacta de los 8 vértices:
-              </p>
-              <div class="math-display">
-                $$= [f(b,d,q) - f(a,d,q)] - [f(b,c,q) - f(a,c,q)] - [f(b,d,p) - f(a,d,p)] + [f(b,c,p) - f(a,c,p)] \quad \blacksquare$$
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: BANCO DE EJERCICIOS SECCIONADO DEL NIVEL 0 AL 5 -->
-        <section class="exercise-section">
-          <div class="exercise-section-header">
-            <div>
-              <h3 class="exercise-section-title">Banco de Ejercicios: Subtema 3 (18 Problemas Resueltos)</h3>
-              <p class="exercise-section-desc">Selecciona un nivel de dificultad para filtrar los ejercicios graduados con pistas y desarrollos completos:</p>
-            </div>
-          </div>
-
-          <div class="level-tabs" data-topic="t3">
-            <button class="level-tab-btn active" data-level="0">Nivel 0 (Principiante)</button>
-            <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
-            <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
-            <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
-            <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
-            <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
-            <button class="level-tab-btn" data-level="all">Ver Todos (18)</button>
-          </div>
-
-          <div class="exercises-container" id="exercises-container-t3"></div>
-        </section>
 
       </div>
+
+      <!-- Barra de Filtros de Nivel de Ejercicios Subtema 3 -->
+      <div class="exercises-header" id="ejercicios-t3">
+        <div>
+          <h2>Banco de Ejercicios: Integrales Triples en Cartesianas</h2>
+          <p style="color:#94a3b8; font-size:0.9rem;">18 ejercicios rigurosos organizados progresivamente del Nivel 0 al 5.</p>
+        </div>
+        <div class="level-tabs" data-topic="t3">
+          <button class="level-tab-btn active" data-level="0">Nivel 0 (Calentamiento)</button>
+          <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
+          <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
+          <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
+          <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
+          <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
+          <button class="level-tab-btn" data-level="all">Ver Todos</button>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de ejercicios -->
+      <div class="exercises-list" id="exercises-container-t3"></div>
     </section>
 
-    <!-- ===================================================================== -->
-    <!-- SUBTEMA 4: COORDENADAS CILÍNDRICAS Y ESFÉRICAS (T4)                   -->
-    <!-- ===================================================================== -->
+    <!-- ========================================================================
+         SECCIÓN 4: COORDENADAS CILÍNDRICAS Y ESFÉRICAS (SESIONES 28 Y 30)
+         ======================================================================== -->
     <section class="topic-section" id="section-t4">
       <div class="topic-grid">
 
-        <!-- BLOQUE 1: DEFINICIONES, TEOREMAS Y PROPIEDADES FORMALES -->
-        <article class="theory-block">
-          <div class="theory-badge">Marco Teórico Riguroso • Sesiones 28 y 30</div>
-          <h2 class="theory-title">4. Coordenadas Cilíndricas y Esféricas en $\mathbb{R}^3$</h2>
+        <!-- Tarjeta de Teoría Subtema 4 -->
+        <article class="theory-card">
+          <h2><span>🌐</span> Sistemas Curvilíneos en $\mathbb{R}^3$: Coordenadas Cilíndricas y Esféricas</h2>
+          <p>
+            Muchos problemas fundamentales de la física y la geometría (cálculo de potenciales gravitatorios, momentos de inercia de cuerpos de revolución y volúmenes entre conos y esferas) exhiben simetría axial o radial. La adopción de coordenadas curvilíneas desacopla los límites de integración transformándolos en cajas ortogonales simples.
+          </p>
 
-          <div class="theorem-box">
-            <h4 class="theorem-title">Definiciones Formales de Transformación y Jacobianos</h4>
-            <ul>
-              <li>
-                <strong>Coordenadas Cilíndricas $(r, \theta, z)$ con $r \ge 0, \ \theta \in [0, 2\pi], \ z \in \mathbb{R}$:</strong>
-                $$x = r\cos\theta, \quad y = r\sin\theta, \quad z = z$$
-                $$|\det J_{\text{cil}}| = r \implies dV = r \, dr \, d\theta \, dz$$
-              </li>
-              <li>
-                <strong>Coordenadas Esféricas $(\rho, \theta, \varphi)$ con $\rho \ge 0, \ \theta \in [0, 2\pi], \ \varphi \in [0, \pi]$:</strong>
-                $$x = \rho\sin\varphi\cos\theta, \quad y = \rho\sin\varphi\sin\theta, \quad z = \rho\cos\varphi$$
-                $$|\det J_{\text{esf}}| = \rho^2 \sin\varphi \implies dV = \rho^2 \sin\varphi \, d\rho \, d\varphi \, d\theta$$
-              </li>
-            </ul>
-          </div>
-
-          <div class="theorem-box">
-            <h4 class="theorem-title">Ecuaciones de Superficies Canónicas en Esféricas</h4>
-            <ul>
-              <li><strong>Esfera centrada en el origen de radio $R$:</strong> $\rho = R$.</li>
-              <li><strong>Cono circular recto con vértice en el origen:</strong> $\varphi = \alpha$ (donde $\tan\alpha = R/H$). Para $z = \sqrt{x^2+y^2}$, $\varphi = \pi/4$.</li>
-              <li><strong>Plano horizontal $z = c > 0$:</strong> $\rho\cos\varphi = c \implies \rho = c\sec\varphi$.</li>
-              <li><strong>Esfera desplazada tangente al plano $XY$ ($x^2+y^2+z^2 = 2Rz$):</strong> $\rho = 2R\cos\varphi$ con $\varphi \in [0, \pi/2]$.</li>
-            </ul>
+          <div class="theory-block theorem">
+            <h4>Ecuaciones de Transformación y Jacobianos Canónicos</h4>
+            <p>
+              <strong>1. Coordenadas Cilíndricas $(r, \theta, z)$ con $r \ge 0, \theta \in [0, 2\pi], z \in \mathbb{R}$:</strong>
+              $$x = r\cos\theta, \quad y = r\sin\theta, \quad z = z, \qquad |\det J_{\text{cil}}| = r.$$
+              $$dV = r \, dr \, d\theta \, dz.$$
+            </p>
+            <p style="margin-top:0.75rem;">
+              <strong>2. Coordenadas Esféricas $(\rho, \theta, \varphi)$ con $\rho \ge 0, \theta \in [0, 2\pi], \varphi \in [0, \pi]$ (Ángulo Cenital):</strong>
+              $$x = \rho\sin\varphi\cos\theta, \quad y = \rho\sin\varphi\sin\theta, \quad z = \rho\cos\varphi, \qquad |\det J_{\text{esf}}| = \rho^2 \sin\varphi.$$
+              $$dV = \rho^2 \sin\varphi \, d\rho \, d\varphi \, d\theta.$$
+            </p>
           </div>
 
           <div class="theory-block caution">
-            <h4 class="caution-title">⚠️ Trampa Clásica de Examen UNI (El Rango del Ángulo Colatitud $\varphi$)</h4>
+            <h4>¡Cuidado con esta trampa clásica UNI! (El rango y orientación del ángulo $\varphi$)</h4>
             <p>
-              ¡Nunca integres $\varphi$ de $0$ a $2\pi$! El ángulo $\varphi$ mide la inclinación desde el polo norte ($+Z$, $\varphi=0$) hasta el polo sur ($-Z$, $\varphi=\pi$). Si lo integras hasta $2\pi$, cubrirás la esfera dos veces. El ángulo azimutal que barre $360^\circ$ es $\theta \in [0, 2\pi]$.
+              En la UNI el ángulo $\varphi$ se mide desde el semieje positivo $Z$ (cenit) hacia abajo (nadir). Su recorrido máximo es estrictamente $[0, \pi]$.
+              <strong>Error grave de examen:</strong> Integrar $\varphi$ de $0$ a $2\pi$, duplicando o cancelando artificialmente volúmenes por signos negativos de $\sin\varphi$. El ángulo azimutal en el plano $XY$ es $\theta \in [0, 2\pi]$.
             </p>
           </div>
+
+          <!-- Visor 3D Interactivo Subtema 4 -->
+          <div class="visualizer-card embedded-visualizer">
+            <div class="visualizer-header">
+              <h3 class="visualizer-title">🎮 Gráfico 3D Interactivo: Cono y Casquete Esférico Canónico</h3>
+              <span class="touch-hint-badge">👆 Toca y gira en 3D</span>
+            </div>
+            <div class="three-canvas-wrapper" id="t4-canvas-container"></div>
+            <div class="visualizer-controls">
+              <div class="control-group">
+                <label class="control-label" for="t4-phi-slider">Ángulo Cenital $\varphi$:</label>
+                <input type="range" class="control-slider" id="t4-phi-slider" min="0.1" max="1.57" step="0.05" value="0.785">
+              </div>
+              <div class="visualizer-readout">
+                <span>Apertura del Cono:</span>
+                <span class="readout-value" id="t4-phi-readout">$\varphi = 45.0^\circ$ (Cono a $45^\circ$)</span>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#94a3b8; margin-top:0.75rem; margin-bottom:0;">
+              Ajusta el slider de $\varphi$ para observar cómo el sólido helado canónico se ensancha desde el eje $Z$ manteniendo la cúpula esférica constante $\rho \le R$.
+            </p>
+          </div>
+
+          <!-- Explicación Intuitiva -->
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <h4 style="color:#38bdf8;">💡 Explicación Sencilla y Detallada (Intuición Operativa)</h4>
+            <p>
+              <strong>¿Por qué el elemento de volumen en esféricas tiene un factor $\rho^2\sin\varphi$?</strong>
+              Imagina una pequeña celda esférica de lados $d\rho, d\varphi, d\theta$:
+            </p>
+            <ul style="margin-left: 1.5rem; color: #cbd5e1; margin-bottom: 0.75rem;">
+              <li>El espesor radial hacia afuera es $d\rho$.</li>
+              <li>La longitud del arco norte-sur a lo largo del meridiano es $\rho \, d\varphi$.</li>
+              <li>La longitud del arco este-oeste a lo largo del paralelo depende de la distancia al eje polar $Z$, dada por el radio del paralelo $r = \rho\sin\varphi$. Por tanto, el ancho este-oeste es $(\rho\sin\varphi) d\theta$.</li>
+              <li>Multiplicando las 3 dimensiones ortogonales: $dV \approx (d\rho) \cdot (\rho \, d\varphi) \cdot (\rho\sin\varphi \, d\theta) = \rho^2 \sin\varphi \, d\rho \, d\varphi \, d\theta$.</li>
+            </ul>
+            <p>
+              En los polos ($\varphi=0$ o $\pi$), $\sin\varphi = 0$ porque los meridianos se juntan en una punta y el ancho este-oeste colapsa a cero.
+            </p>
+          </div>
+
+          <!-- Traductor de Jerga Formal -->
+          <div class="formal-translator-box">
+            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 28, 30) ↔ Español Humano</h4>
+            <div class="translator-grid">
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $z = \sqrt{x^2+y^2} \iff \varphi = \pi/4$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  El cono estándar a $45^\circ$ en cartesianas tiene una ecuación compleja, pero en coordenadas esféricas se reduce a un ángulo cenital constante $\varphi = \pi/4$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Sustituye inmediatamente el límite superior o inferior de $\varphi$ por $\pi/4$.
+                </div>
+              </div>
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $x^2+y^2+z^2 \le 2az \iff \rho \le 2a\cos\varphi$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  Una esfera desplazada tangente al plano $XY$ en el origen: su radio polar no es constante, sino que depende de la inclinación del rayo con $\cos\varphi$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Integra $\rho$ desde $0$ hasta $2a\cos\varphi$, y $\varphi$ en $[0, \pi/2]$ (solo hemisferio norte).
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demostración en 2 Fases -->
+          <div class="proof-anatomy-widget">
+            <div class="proof-anatomy-header">
+              <span class="proof-anatomy-title">🧬 Anatomía de Demostración: Cálculo del Determinante Jacobiano Esférico</span>
+              <div class="proof-phase-tabs">
+                <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Cómo pensarla (Borrador)</button>
+                <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Formal (20/20)</button>
+              </div>
+            </div>
+            <div class="proof-phase-pane active" data-phase="draft">
+              <div class="draft-step-grid">
+                <div class="draft-step-card">
+                  <h5>🎯 1. ¿A qué quiero llegar?</h5>
+                  <p style="font-size:0.85rem; margin:0;">Calcular $\det J$ de la matriz $3\times 3$ de derivadas parciales y probar que su valor es $\rho^2\sin\varphi$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🧰 2. Traducción de Hipótesis</h5>
+                  <p style="font-size:0.85rem; margin:0;">Ecuaciones: $x = \rho\sin\varphi\cos\theta, y = \rho\sin\varphi\sin\theta, z = \rho\cos\varphi$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🌉 3. El Puente / Truco</h5>
+                  <p style="font-size:0.85rem; margin:0;">Expandir por la tercera fila (la fila de $z$), que solo tiene dos términos no nulos: $\frac{\partial z}{\partial \rho} = \cos\varphi$, $\frac{\partial z}{\partial \varphi} = -\rho\sin\varphi$, $\frac{\partial z}{\partial \theta} = 0$.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proof-phase-pane" data-phase="formal">
+              <div class="formal-proof-script">
+                <p><strong>Demostración Formal:</strong></p>
+                <p>La matriz Jacobiana $J(\rho, \varphi, \theta)$ es:
+                $$J = \begin{pmatrix}
+                \sin\varphi\cos\theta & \rho\cos\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\
+                \sin\varphi\sin\theta & \rho\cos\varphi\sin\theta & \rho\sin\varphi\cos\theta \\
+                \cos\varphi & -\rho\sin\varphi & 0
+                \end{pmatrix}.$$</p>
+                <p>Expandiendo por los cofactores de la tercera fila:</p>
+                <p>$$\det J = \cos\varphi \begin{vmatrix} \rho\cos\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\ \rho\cos\varphi\sin\theta & \rho\sin\varphi\cos\theta \end{vmatrix} - (-\rho\sin\varphi) \begin{vmatrix} \sin\varphi\cos\theta & -\rho\sin\varphi\sin\theta \\ \sin\varphi\sin\theta & \rho\sin\varphi\cos\theta \end{vmatrix}.$$</p>
+                <p>1. Primer menor: $\rho^2\sin\varphi\cos\varphi(\cos^2\theta + \sin^2\theta) = \rho^2\sin\varphi\cos\varphi$. Multiplicado por $\cos\varphi$: $\rho^2\sin\varphi\cos^2\varphi$.</p>
+                <p>2. Segundo menor: $\rho\sin^2\varphi(\cos^2\theta + \sin^2\theta) = \rho\sin^2\varphi$. Multiplicado por $\rho\sin\varphi$: $\rho^2\sin^3\varphi$.</p>
+                <p style="margin-bottom:0;">3. Sumando ambos términos y factorizando:
+                $$\det J = \rho^2\sin\varphi(\cos^2\varphi + \sin^2\varphi) = \rho^2\sin\varphi.$$
+                Como $\varphi \in [0, \pi]$, $\sin\varphi \ge 0$, por lo que $|\det J| = \rho^2\sin\varphi$. $\blacksquare$</p>
+              </div>
+            </div>
+          </div>
         </article>
-
-        <!-- BLOQUE 2: GRÁFICO INTERACTIVO 3D EMBEBIDO -->
-        <div class="visualizer-card embedded-visualizer">
-          <div class="visualizer-header">
-            <div>
-              <h3 class="visualizer-title">Simulador 3D: Cuña Esférica Elemental y Sólido Cono-Esfera</h3>
-              <p class="visualizer-subtitle">Modifica interactivamente el radio $\rho$, la colatitud $\varphi$ y el azimut $\theta$ en tiempo real</p>
-            </div>
-            <div class="visualizer-controls-row">
-              <div class="btn-group">
-                <button type="button" class="btn-toggle t4-mode-btn active" data-mode="wedge">Cuña Esférica</button>
-                <button type="button" class="btn-toggle t4-mode-btn" data-mode="cone">Cono-Esfera</button>
-              </div>
-            </div>
-          </div>
-
-          <div class="visualizer-canvas-container" id="t4-canvas-container"></div>
-
-          <div class="visualizer-footer">
-            <div class="slider-control">
-              <label for="t4-phi-slider">Ángulo Colatitud $\varphi$ (Apertura del Cono):</label>
-              <input type="range" id="t4-phi-slider" min="15" max="90" step="5" value="60">
-              <span class="readout-pill" id="t4-phi-readout">60°</span>
-            </div>
-            <div class="slider-control">
-              <label for="t4-theta-slider">Barrido Azimutal $\theta$:</label>
-              <input type="range" id="t4-theta-slider" min="30" max="360" step="15" value="216">
-              <span class="readout-pill" id="t4-theta-readout">216°</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: EXPLICACIÓN SENCILLA, INTUITIVA Y DETALLADA -->
-        <article class="theory-block intuition">
-          <h3 class="intuition-title">💡 Explicación Sencilla e Intuitiva: Gajos de Naranja y el Factor $\rho^2\sin\varphi$</h3>
-          <p>
-            ¿Por qué el volumen infinitesimal en esféricas es $\rho^2 \sin\varphi \, d\rho \, d\varphi \, d\theta$?
-          </p>
-          <p>
-            Imagina que pelas una naranja tridimensional extrayendo un pedacito de pulpa curvo:
-          </p>
-          <ul>
-            <li>En la dirección radial hacia afuera, el grosor es simplemente $d\rho$.</li>
-            <li>En la dirección norte-sur (a lo largo del meridiano), el arco a distancia $\rho$ mide $\rho \cdot d\varphi$.</li>
-            <li>En la dirección este-oeste (a lo largo del paralelo), la distancia al eje central $Z$ es el radio del paralelo: $r = \rho\sin\varphi$. Por tanto, el arco este-oeste mide $(\rho\sin\varphi) \cdot d\theta$.</li>
-          </ul>
-          <p>
-            Multiplicando las tres aristas ortogonales:
-            $$(d\rho) \cdot (\rho \, d\varphi) \cdot (\rho\sin\varphi \, d\theta) = \rho^2 \sin\varphi \, d\rho \, d\varphi \, d\theta$$
-            En los polos ($arphi=0$ o $\pi$), $\sinarphi = 0$ porque los meridianos se juntan en una punta y el ancho este-oeste colapsa a cero.
-          </p>
-        </article>
-
-        <!-- BLOQUE 4: TRADUCTOR BILINGÜE DE JERGA FORMAL -->
-        <div class="formal-translator-box">
-          <h4>🔍 Traductor Bilingüe: Jerga Formal de Examen ↔ Español Humano</h4>
-          <table class="translator-table">
-            <thead>
-              <tr>
-                <th style="width:32%;">Símbolo en Examen UNI</th>
-                <th style="width:34%;">En Español Sencillo</th>
-                <th style="width:34%;">¿Qué hacer en tu cuadernillo?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>$z = \sqrt{x^2 + y^2}$</td>
-                <td>Cono a $45^\circ$ saliendo del origen hacia arriba.</td>
-                <td>Escribe directamente $\varphi = \pi/4$ en esféricas, o $z = r$ en cilíndricas.</td>
-              </tr>
-              <tr>
-                <td>$\frac{1}{\sqrt{x^2+y^2+z^2}}$</td>
-                <td>Potencial tipo Newton o Coulomb con singularidad en el origen.</td>
-                <td>Pasa a esféricas: el integrando es $1/\rho$. Al multiplicar por el Jacobiano $\rho^2\sin\varphi$, queda $\rho\sin\varphi$, ¡integrable sin singularidad!</td>
-              </tr>
-              <tr>
-                <td>$x^2 + y^2 + z^2 \le 2az$</td>
-                <td>Esfera desplazada apoyada sobre el plano $XY$.</td>
-                <td>En esféricas su ecuación es $\rho = 2a\cos\varphi$ con $\varphi \in [0, \pi/2]$.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- BLOQUE 5: ANATOMÍA DE DEMOSTRACIÓN EN 2 FASES -->
-        <div class="proof-anatomy-widget">
-          <div class="proof-widget-header">
-            <div>
-              <span class="proof-badge">🧬 Demostración Clave • Potencial Gravitatorio UNI</span>
-              <h3 class="proof-widget-title">Potencial en la Bola Unitaria con Punto Exterior: $\iiint_B rac{dV}{\|\mathbf{x} - (0,0,a)\|} = rac{4\pi}{3a}$</h3>
-            </div>
-            <div class="proof-phase-toggles">
-              <button type="button" class="proof-phase-toggle-btn active" data-phase="heuristic">
-                🧠 Fase 1: Cómo Pensarla (Borrador)
-              </button>
-              <button type="button" class="proof-phase-toggle-btn" data-phase="formal">
-                ✍️ Fase 2: Redacción Formal (20/20)
-              </button>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane active" data-phase="heuristic">
-            <div class="proof-cards-grid">
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 1</div>
-                <h4 class="heuristic-step-title">🎯 Meta Física</h4>
-                <p>
-                  Probar que para un punto exterior a una esfera uniforme ($a > 1$), el potencial es exactamente igual a que si toda la masa estuviera concentrada en el origen: $rac{M}{a} = rac{4\pi/3}{a}$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 2</div>
-                <h4 class="heuristic-step-title">🧰 Ley del Coseno</h4>
-                <p>
-                  En esféricas, la distancia al punto $(0,0,a)$ es $\sqrt{ho^2 + a^2 - 2aho\cosarphi}$. El cambio de variable $u = ho^2 + a^2 - 2aho\cosarphi$ simplifica la integral en $arphi$ porque $du = 2aho\sinarphi darphi$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 3</div>
-                <h4 class="heuristic-step-title">🌉 Extracción de la Raíz</h4>
-                <p>
-                  Al evaluar en $arphi = 0$, $\sqrt{u} = \sqrt{(a-ho)^2} = a - ho$ (ya que $a > 1 \ge ho$). La resta cancela la variable $ho$ y deja una constante limpia $2/a$.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane" data-phase="formal">
-            <div class="formal-proof-content">
-              <p><strong>Demostración Formal (PC5 2024-II, Pregunta 4):</strong></p>
-              <p>
-                Consideremos la bola unitaria $B = \{ (x,y,z) : x^2 + y^2 + z^2 \le 1 \}$ y sea $a > 1$. En coordenadas esféricas:
-              </p>
-              <div class="math-display">
-                $$x^2 + y^2 + (z - a)^2 = (x^2 + y^2 + z^2) - 2az + a^2 = \rho^2 + a^2 - 2a\rho\cos\varphi$$
-              </div>
-              <p>
-                La integral triple se escribe iteradamente como:
-              </p>
-              <div class="math-display">
-                $$I = \int_0^1 \int_0^{2\pi} \int_0^\pi \frac{\rho^2 \sin\varphi}{\sqrt{\rho^2 + a^2 - 2a\rho\cos\varphi}} \, d\varphi \, d\theta \, d\rho = 2\pi \int_0^1 \rho^2 \left( \int_0^\pi \frac{\sin\varphi}{\sqrt{\rho^2 + a^2 - 2a\rho\cos\varphi}} \, d\varphi \right) d\rho$$
-              </div>
-              <p>
-                Para la integral interior, efectuamos la sustitución $u = \rho^2 + a^2 - 2a\rho\cos\varphi \implies du = 2a\rho\sin\varphi \, d\varphi$. Los límites de integración son:
-              </p>
-              <div class="math-display">
-                $$\varphi = 0 \implies u = (a - \rho)^2, \qquad \varphi = \pi \implies u = (a + \rho)^2$$
-              </div>
-              <p>
-                Dado que $a > 1 \ge \rho > 0$, se cumple estrictamente $a - \rho > 0$, de modo que $\sqrt{(a - \rho)^2} = a - \rho$. Por consiguiente:
-              </p>
-              <div class="math-display">
-                $$\int_{(a-\rho)^2}^{(a+\rho)^2} \frac{du}{2a\rho \sqrt{u}} = \frac{1}{2a\rho} [2\sqrt{u}]_{(a-\rho)^2}^{(a+\rho)^2} = \frac{1}{a\rho} [ (a + \rho) - (a - \rho) ] = \frac{2\rho}{a\rho} = \frac{2}{a}$$
-              </div>
-              <p>
-                Sustituyendo este resultado constante en la integral radial exterior:
-              </p>
-              <div class="math-display">
-                $$I = 2\pi \int_0^1 \rho^2 \left( \frac{2}{a} \right) d\rho = \frac{4\pi}{a} \left[ \frac{\rho^3}{3} \right]_0^1 = \frac{4\pi}{3a} \qquad \blacksquare$$
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: BANCO DE EJERCICIOS SECCIONADO DEL NIVEL 0 AL 5 -->
-        <section class="exercise-section">
-          <div class="exercise-section-header">
-            <div>
-              <h3 class="exercise-section-title">Banco de Ejercicios: Subtema 4 (18 Problemas Resueltos)</h3>
-              <p class="exercise-section-desc">Selecciona un nivel de dificultad para filtrar los ejercicios graduados con pistas y desarrollos completos:</p>
-            </div>
-          </div>
-
-          <div class="level-tabs" data-topic="t4">
-            <button class="level-tab-btn active" data-level="0">Nivel 0 (Principiante)</button>
-            <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
-            <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
-            <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
-            <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
-            <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
-            <button class="level-tab-btn" data-level="all">Ver Todos (18)</button>
-          </div>
-
-          <div class="exercises-container" id="exercises-container-t4"></div>
-        </section>
 
       </div>
+
+      <!-- Barra de Filtros de Nivel de Ejercicios Subtema 4 -->
+      <div class="exercises-header" id="ejercicios-t4">
+        <div>
+          <h2>Banco de Ejercicios: Coordenadas Cilíndricas y Esféricas</h2>
+          <p style="color:#94a3b8; font-size:0.9rem;">18 ejercicios rigurosos organizados progresivamente del Nivel 0 al 5.</p>
+        </div>
+        <div class="level-tabs" data-topic="t4">
+          <button class="level-tab-btn active" data-level="0">Nivel 0 (Calentamiento)</button>
+          <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
+          <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
+          <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
+          <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
+          <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
+          <button class="level-tab-btn" data-level="all">Ver Todos</button>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de ejercicios -->
+      <div class="exercises-list" id="exercises-container-t4"></div>
     </section>
 
-    <!-- ===================================================================== -->
-    <!-- SUBTEMA 5: INTEGRALES EN Rn Y APLICACIONES FÍSICAS (T5)              -->
-    <!-- ===================================================================== -->
+    <!-- ========================================================================
+         SECCIÓN 5: INTEGRALES EN Rⁿ Y APLICACIONES FÍSICAS (SESIÓN 30)
+         ======================================================================== -->
     <section class="topic-section" id="section-t5">
       <div class="topic-grid">
 
-        <!-- BLOQUE 1: DEFINICIONES, TEOREMAS Y PROPIEDADES FORMALES -->
-        <article class="theory-block">
-          <div class="theory-badge">Marco Teórico Riguroso • Sesión 30 del Sílabo</div>
-          <h2 class="theory-title">5. Integrales Múltiples en $\mathbb{R}^n$ y Aplicaciones Físico-Geométricas</h2>
+        <!-- Tarjeta de Teoría Subtema 5 -->
+        <article class="theory-card">
+          <h2><span>⚖️</span> Integrales en $\mathbb{R}^n$, Centros de Masa y Momentos de Inercia</h2>
+          <p>
+            La teoría de integración múltiple culmina en la generalización a $\mathbb{R}^n$ y en el modelamiento físico de cuerpos continuos heterogéneos. Permite determinar la masa total $M$, el centro de gravedad $(\bar{x}, \bar{y}, \bar{z})$, el tensor de inercia y los momentos respecto a ejes de rotación arbitrarios mediante el <strong>Teorema de Steiner</strong>.
+          </p>
 
-          <div class="theorem-box">
-            <h4 class="theorem-title">Fórmulas Fundamentales de Mecánica Continua</h4>
-            <ul>
-              <li>
-                <strong>Masa Total con Densidad Variable $\rho(\mathbf{x})$:</strong>
-                $$M = \iiint_\Omega \rho(x,y,z) \, dV$$
+          <div class="theory-block theorem">
+            <h4>Formulación Matemática de las Aplicaciones Físicas</h4>
+            <p>
+              Sea $\Omega \subset \mathbb{R}^3$ un cuerpo sólido con función de densidad volumétrica $\rho(x,y,z) \ge 0$:
+            </p>
+            <ul style="margin-left: 1.5rem; color: #cbd5e1; margin-top: 0.5rem;">
+              <li><strong>Masa Total:</strong> $M = \iiint_\Omega \rho(x,y,z) \, dV$.</li>
+              <li><strong>Centro de Masa:</strong> $\bar{x} = \frac{1}{M} \iiint_\Omega x\rho \, dV, \quad \bar{y} = \frac{1}{M} \iiint_\Omega y\rho \, dV, \quad \bar{z} = \frac{1}{M} \iiint_\Omega z\rho \, dV$.</li>
+              <li><strong>Momentos de Inercia respecto a los ejes coordenados:</strong>
+                $$I_z = \iiint_\Omega (x^2 + y^2)\rho \, dV, \quad I_x = \iiint_\Omega (y^2 + z^2)\rho \, dV, \quad I_y = \iiint_\Omega (x^2 + z^2)\rho \, dV.$$
               </li>
-              <li>
-                <strong>Centro de Masa $(\bar{x}, \bar{y}, \bar{z})$:</strong>
-                $$\bar{x} = \frac{1}{M} \iiint_\Omega x \rho \, dV, \quad \bar{y} = \frac{1}{M} \iiint_\Omega y \rho \, dV, \quad \bar{z} = \frac{1}{M} \iiint_\Omega z \rho \, dV$$
-              </li>
-              <li>
-                <strong>Momentos de Inercia respecto a los Ejes Coordenados:</strong>
-                $$I_x = \iiint_\Omega (y^2 + z^2) \rho \, dV, \quad I_y = \iiint_\Omega (x^2 + z^2) \rho \, dV, \quad I_z = \iiint_\Omega (x^2 + y^2) \rho \, dV$$
-              </li>
-              <li>
-                <strong>Valor Promedio de una Función:</strong>
-                $$f_{\text{prom}} = \frac{1}{\operatorname{Vol}(\Omega)} \iiint_\Omega f(x,y,z) \, dV$$
-              </li>
-            </ul>
-          </div>
-
-          <div class="theorem-box">
-            <h4 class="theorem-title">Integrales en $\mathbb{R}^n$: Simplex y Bola Hiperdimensional</h4>
-            <ul>
-              <li>
-                <strong>Volumen del $n$-simplex estándar $\Delta_n = \{ \mathbf{x} \in \mathbb{R}^n : x_i \ge 0, \sum x_i \le 1 \}$:</strong>
-                $$\operatorname{Vol}(\Delta_n) = \frac{1}{n!}$$
-              </li>
-              <li>
-                <strong>Volumen de la bola $n$-dimensional de radio $R$:</strong>
-                $$V_n(R) = \frac{\pi^{n/2}}{\Gamma(n/2 + 1)} R^n \implies V_4(R) = \frac{\pi^2}{2} R^4$$
+              <li><strong>Hipervolumen de la Bola en $\mathbb{R}^n$:</strong>
+                $$V_n(R) = \frac{\pi^{n/2}}{\Gamma(n/2 + 1)} R^n \implies V_4(R) = \frac{\pi^2}{2} R^4.$$
               </li>
             </ul>
           </div>
 
           <div class="theory-block caution">
-            <h4 class="caution-title">⚠️ Trampa Frecuente: ¡Distancia Cuadrada al Eje de Inercia!</h4>
+            <h4>¡Cuidado con esta trampa clásica UNI! (Confundir Centroide con Centro de Masa)</h4>
             <p>
-              El momento de inercia respecto al eje $Z$ es la distancia perpendicular al eje $Z$, la cual es $r^2 = x^2 + y^2$, <strong>sin incluir $z^2$</strong>. Incluir $z^2$ daría el momento polar respecto al origen $I_0 = \iiint (x^2+y^2+z^2)\rho dV$. Recuerda: $I_0 = \frac{1}{2}(I_x + I_y + I_z)$.
+              El <strong>centroide</strong> es una propiedad estrictamente geométrica donde se asume $\rho = 1$ (densidad homogénea).
+              Si el enunciado indica una densidad no homogénea (ej. $\rho = x + y$ o $\rho = z^2$), calcular el centroide geométrico en vez del centro de masa anula el puntaje en el examen.
             </p>
           </div>
+
+          <!-- Visor 3D Interactivo Subtema 5 -->
+          <div class="visualizer-card embedded-visualizer">
+            <div class="visualizer-header">
+              <h3 class="visualizer-title">🎮 Gráfico 3D Interactivo: Centro de Masa y Distribución Heterogénea</h3>
+              <span class="touch-hint-badge">👆 Toca y gira en 3D</span>
+            </div>
+            <div class="three-canvas-wrapper" id="t5-canvas-container"></div>
+            <div class="visualizer-controls">
+              <div class="control-group">
+                <label class="control-label" for="t5-density-slider">Gradiente de Densidad ($k$):</label>
+                <input type="range" class="control-slider" id="t5-density-slider" min="0" max="3" step="0.1" value="1.0">
+              </div>
+              <div class="visualizer-readout">
+                <span>Posición Centro de Masa:</span>
+                <span class="readout-value" id="t5-density-readout">$\bar{z} = 0.60$ (Desplazado hacia la base densa)</span>
+              </div>
+            </div>
+            <p style="font-size:0.82rem; color:#94a3b8; margin-top:0.75rem; margin-bottom:0;">
+              Al aumentar el gradiente de densidad con el slider, observa cómo la esfera dorada del centro de masa se desplaza de su posición geométrica hacia la zona de mayor densidad.
+            </p>
+          </div>
+
+          <!-- Explicación Intuitiva -->
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08);">
+            <h4 style="color:#38bdf8;">💡 Explicación Sencilla y Detallada (Intuición Operativa)</h4>
+            <p>
+              <strong>¿Qué representa físicamente el momento de inercia $I_z$?</strong>
+              En movimiento lineal, la masa $M$ mide la resistencia de un cuerpo a ser acelerado ($F = Ma$). En rotación, el momento de inercia $I_z = \iiint (x^2+y^2)\rho dV$ mide la resistencia del cuerpo a girar alrededor del eje $Z$ ($\tau = I\alpha$).
+            </p>
+            <p>
+              La distancia al eje está al cuadrado $(x^2+y^2)$: por eso, la masa que está lejos del eje cuesta cuatro veces más hacerla girar que la masa que está cerca.
+            </p>
+          </div>
+
+          <!-- Traductor de Jerga Formal -->
+          <div class="formal-translator-box">
+            <h4>🔍 Traductor de Jerga Formal UNI (Sesión 30) ↔ Español Humano</h4>
+            <div class="translator-grid">
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $I_L = I_{\text{cm}} + M d^2$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  Teorema de Steiner (ejes paralelos): el momento de inercia respecto a cualquier eje paralelo es el momento respecto al centro de masa más la masa total por la distancia al cuadrado.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Calcula siempre primero el momento baricéntrico más fácil $I_{\text{cm}}$ y súmale $M d^2$.
+                </div>
+              </div>
+              <div class="translator-item">
+                <div class="trans-col-symbol">
+                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
+                  $\Delta_n = \left\{ \mathbf{x} \in \mathbb{R}^n \mid x_i \ge 0, \sum x_i \le 1 \right\}$
+                </div>
+                <div class="trans-col-human">
+                  <span class="trans-col-label">En Español Sencillo</span>
+                  El simplex estándar n-dimensional (triángulo en 2D, tetraedro en 3D). Su volumen siempre es exactamente $1/n!$.
+                </div>
+                <div class="trans-col-action">
+                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
+                  Usa la fórmula $\operatorname{Vol}(\Delta_n) = \frac{1}{n!}$ como atajo para verificar tus integrales iteradas.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Demostración en 2 Fases -->
+          <div class="proof-anatomy-widget">
+            <div class="proof-anatomy-header">
+              <span class="proof-anatomy-title">🧬 Anatomía de Demostración: Teorema de Steiner (Ejes Paralelos)</span>
+              <div class="proof-phase-tabs">
+                <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Cómo pensarla (Borrador)</button>
+                <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Formal (20/20)</button>
+              </div>
+            </div>
+            <div class="proof-phase-pane active" data-phase="draft">
+              <div class="draft-step-grid">
+                <div class="draft-step-card">
+                  <h5>🎯 1. ¿A qué quiero llegar?</h5>
+                  <p style="font-size:0.85rem; margin:0;">Probar que para un eje $L$ desplazado en $(d, 0)$, $I_L = \iiint ((x-d)^2 + y^2)\rho dV = I_{\text{cm}} + M d^2$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🧰 2. Traducción de Hipótesis</h5>
+                  <p style="font-size:0.85rem; margin:0;">Colocar el origen en el centro de masa. Por definición de centro de masa, la integral de primer orden $\iiint x \rho dV = 0$ y $\iiint y \rho dV = 0$.</p>
+                </div>
+                <div class="draft-step-card">
+                  <h5>🌉 3. El Puente / Truco</h5>
+                  <p style="font-size:0.85rem; margin:0;">Expandir el binomio $(x-d)^2 = x^2 - 2xd + d^2$. El término cruzado $-2d \iiint x\rho dV$ se anula idénticamente por la condición de centro de masa, dejando solo $x^2 + y^2$ y $d^2 \iiint \rho dV$.</p>
+                </div>
+              </div>
+            </div>
+            <div class="proof-phase-pane" data-phase="formal">
+              <div class="formal-proof-script">
+                <p><strong>Demostración Formal:</strong></p>
+                <p>Sea un sistema coordenado con origen en el centro de masa del cuerpo $\Omega$, de modo que:</p>
+                <p>$$\bar{x} = \frac{1}{M} \iiint_\Omega x \rho \, dV = 0, \qquad \bar{y} = \frac{1}{M} \iiint_\Omega y \rho \, dV = 0.$$</p>
+                <p>Consideremos un eje $L$ paralelo al eje $Z$ que pasa por el punto $(x_0, y_0)$, con distancia al eje baricéntrico $d^2 = x_0^2 + y_0^2$.</p>
+                <p>El momento de inercia respecto a $L$ es:</p>
+                <p>$$I_L = \iiint_\Omega \left[ (x - x_0)^2 + (y - y_0)^2 \right] \rho \, dV.$$</p>
+                <p>Expandiendo algebraicamente los cuadrados:</p>
+                <p>$$I_L = \iiint_\Omega (x^2 + y^2) \rho \, dV - 2x_0 \iiint_\Omega x \rho \, dV - 2y_0 \iiint_\Omega y \rho \, dV + (x_0^2 + y_0^2) \iiint_\Omega \rho \, dV.$$</p>
+                <p style="margin-bottom:0;">Sustituyendo las propiedades del centro de masa:
+                $$I_L = I_{\text{cm}} - 2x_0(0) - 2y_0(0) + d^2 M = I_{\text{cm}} + M d^2. \qquad \blacksquare$$</p>
+              </div>
+            </div>
+          </div>
         </article>
-
-        <!-- BLOQUE 2: GRÁFICO INTERACTIVO 3D EMBEBIDO -->
-        <div class="visualizer-card embedded-visualizer">
-          <div class="visualizer-header">
-            <div>
-              <h3 class="visualizer-title">Simulador 3D: Gradiente de Densidad, Centro de Masa e Inercia</h3>
-              <p class="visualizer-subtitle">Modifica el exponente del gradiente de densidad para observar el desplazamiento del centro de masa y el anillo de giro $I_z$</p>
-            </div>
-          </div>
-
-          <div class="visualizer-canvas-container" id="t5-canvas-container"></div>
-
-          <div class="visualizer-footer">
-            <div class="slider-control">
-              <label for="t5-density-slider">Gradiente de Densidad $\rho(z) = (z/H + 0.1)^\alpha$:</label>
-              <input type="range" id="t5-density-slider" min="0.1" max="3.0" step="0.1" value="1.0">
-              <span class="readout-pill" id="t5-density-readout">1.00</span>
-            </div>
-            <div class="slider-control">
-              <span>Altura del Centro de Masa $\bar{z}$ calculada:</span>
-              <span class="readout-pill" id="t5-cm-readout" style="background:#f59e0b; color:#0f172a; font-weight:700;">0.833</span>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 3: EXPLICACIÓN SENCILLA, INTUITIVA Y DETALLADA -->
-        <article class="theory-block intuition">
-          <h3 class="intuition-title">💡 Explicación Sencilla e Intuitiva: El Balancín y la Resistencia al Giro</h3>
-          <p>
-            Las aplicaciones físicas de las integrales múltiples son sumas ponderadas continuas:
-          </p>
-          <ol>
-            <li>
-              <strong>Centro de Masa (El Punto de Apoyo Perfecto):</strong> Es el punto exacto donde podrías sostener todo el cuerpo sobre la punta de una aguja sin que se caiga. Cada diferencial de masa $dm = \rho dV$ 'hala' hacia su posición con un brazo de palanca $\mathbf{r}$. El centro de masa es el promedio de todas esas posiciones ponderadas por la masa.
-            </li>
-            <li>
-              <strong>Momento de Inercia (La Pereza Rotacional):</strong> Así como la masa $M$ mide la resistencia de un objeto a acelerar en línea recta ($F = Ma$), el momento de inercia $I_z$ mide la resistencia del objeto a empezar a girar alrededor del eje $Z$ ($\tau = I\alpha$). Como la distancia al eje está elevada al cuadrado ($r^2$), la masa ubicada lejos del centro penaliza muchísimo más la rotación que la masa ubicada cerca del eje.
-            </li>
-          </ol>
-        </article>
-
-        <!-- BLOQUE 4: TRADUCTOR BILINGÜE DE JERGA FORMAL -->
-        <div class="formal-translator-box">
-          <h4>🔍 Traductor Bilingüe: Jerga Formal de Examen ↔ Español Humano</h4>
-          <table class="translator-table">
-            <thead>
-              <tr>
-                <th style="width:32%;">Símbolo en Examen UNI</th>
-                <th style="width:34%;">En Español Sencillo</th>
-                <th style="width:34%;">¿Qué hacer en tu cuadernillo?</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>$\bar{\mathbf{r}} = \frac{1}{M} \iiint \mathbf{r} \rho \, dV$</td>
-                <td>Vector de posición del Centro de Masa.</td>
-                <td>Calcula primero la masa total $M = \iiint \rho dV$; luego calcula las integrales de primer orden $M_{yz}, M_{xz}, M_{xy}$ y divide entre $M$.</td>
-              </tr>
-              <tr>
-                <td>$I_z = \iiint (x^2 + y^2) \rho \, dV$</td>
-                <td>Momento de inercia alrededor del eje vertical $Z$.</td>
-                <td>En coordenadas cilíndricas, sustituye $x^2+y^2 = r^2$ y $dV = r dr d\theta dz$ para integrar $r^3 \rho$.</td>
-              </tr>
-              <tr>
-                <td>$\Delta_n = \{ \mathbf{x} \in \mathbb{R}^n : x_i \ge 0, \sum x_i \le 1 \}$</td>
-                <td>El tetraedro o pirámide de dimensión $n$ (simplex).</td>
-                <td>Usa inducción matemática o la fórmula factorial $\operatorname{Vol}(\Delta_n) = \frac{1}{n!}$.</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <!-- BLOQUE 5: ANATOMÍA DE DEMOSTRACIÓN EN 2 FASES -->
-        <div class="proof-anatomy-widget">
-          <div class="proof-widget-header">
-            <div>
-              <span class="proof-badge">🧬 Demostración Clave • Teorema de los Ejes Paralelos</span>
-              <h3 class="proof-widget-title">Teorema de Steiner: $I_L = I_{	ext{cm}} + M d^2$ demostrado con Integrales Triples</h3>
-            </div>
-            <div class="proof-phase-toggles">
-              <button type="button" class="proof-phase-toggle-btn active" data-phase="heuristic">
-                🧠 Fase 1: Cómo Pensarla (Borrador)
-              </button>
-              <button type="button" class="proof-phase-toggle-btn" data-phase="formal">
-                ✍️ Fase 2: Redacción Formal (20/20)
-              </button>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane active" data-phase="heuristic">
-            <div class="proof-cards-grid">
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 1</div>
-                <h4 class="heuristic-step-title">🎯 Objetivo</h4>
-                <p>
-                  Probar que el momento de inercia respecto a un eje desplazado una distancia $d$ es el momento respecto al centro de masa más $M d^2$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 2</div>
-                <h4 class="heuristic-step-title">🧰 Sistema de Referencia CM</h4>
-                <p>
-                  Colocar el origen en el centro de masa. Por definición de centro de masa, la integral de primer orden $\iiint x ho dV = 0$ y $\iiint y ho dV = 0$.
-                </p>
-              </div>
-              <div class="heuristic-card">
-                <div class="heuristic-step-num">Paso 3</div>
-                <h4 class="heuristic-step-title">🌉 Cancelación del Término Cruzado</h4>
-                <p>
-                  Al expandir la distancia euclidiana $(x - d)^2 = x^2 - 2dx + d^2$, el término lineal en $x$ se anula idénticamente al integrar, sobreviviendo únicamente $I_{	ext{cm}}$ y $d^2 \iiint ho dV = M d^2$.
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div class="proof-phase-pane" data-phase="formal">
-            <div class="formal-proof-content">
-              <p><strong>Demostración Formal:</strong></p>
-              <p>
-                Elijamos un sistema de coordenadas cartesianas cuyo origen coincida con el centro de masa del cuerpo, de modo que el eje $Z$ pase por el centro de masa. Por definición de centro de masa:
-              </p>
-              <div class="math-display">
-                $$\iiint_\Omega x \rho(x,y,z) \, dV = 0, \qquad \iiint_\Omega y \rho(x,y,z) \, dV = 0$$
-              </div>
-              <p>
-                El momento de inercia respecto a este eje baricéntrico es:
-              </p>
-              <div class="math-display">
-                $$I_{\text{cm}} = \iiint_\Omega (x^2 + y^2) \rho(x,y,z) \, dV$$
-              </div>
-              <p>
-                Sea ahora un eje $L$ paralelo al eje $Z$, situado a una distancia $d$ a lo largo del eje $X$ (en $(d, 0)$). La distancia al cuadrado de cualquier punto $(x,y,z)$ al nuevo eje $L$ es $r_L^2 = (x - d)^2 + y^2$. Por tanto:
-              </p>
-              <div class="math-display">
-                $$I_L = \iiint_\Omega \left[ (x - d)^2 + y^2 \right] \rho \, dV = \iiint_\Omega (x^2 - 2dx + d^2 + y^2) \rho \, dV$$
-              </div>
-              <p>
-                Separando la integral por linealidad:
-              </p>
-              <div class="math-display">
-                $$I_L = \iiint_\Omega (x^2 + y^2) \rho \, dV - 2d \left( \iiint_\Omega x \rho \, dV \right) + d^2 \left( \iiint_\Omega \rho \, dV \right)$$
-              </div>
-              <p>
-                Como $\iiint_\Omega x \rho \, dV = 0$ y $\iiint_\Omega \rho \, dV = M$, el término intermedio se anula idénticamente, concluyendo:
-              </p>
-              <div class="math-display">
-                $$I_L = I_{\text{cm}} - 0 + M d^2 = I_{\text{cm}} + M d^2 \qquad \blacksquare$$
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- BLOQUE 6: BANCO DE EJERCICIOS SECCIONADO DEL NIVEL 0 AL 5 -->
-        <section class="exercise-section">
-          <div class="exercise-section-header">
-            <div>
-              <h3 class="exercise-section-title">Banco de Ejercicios: Subtema 5 (18 Problemas Resueltos)</h3>
-              <p class="exercise-section-desc">Selecciona un nivel de dificultad para filtrar los ejercicios graduados con pistas y desarrollos completos:</p>
-            </div>
-          </div>
-
-          <div class="level-tabs" data-topic="t5">
-            <button class="level-tab-btn active" data-level="0">Nivel 0 (Principiante)</button>
-            <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
-            <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
-            <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
-            <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
-            <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
-            <button class="level-tab-btn" data-level="all">Ver Todos (18)</button>
-          </div>
-
-          <div class="exercises-container" id="exercises-container-t5"></div>
-        </section>
 
       </div>
+
+      <!-- Barra de Filtros de Nivel de Ejercicios Subtema 5 -->
+      <div class="exercises-header" id="ejercicios-t5">
+        <div>
+          <h2>Banco de Ejercicios: Integrales en Rⁿ y Aplicaciones Físicas</h2>
+          <p style="color:#94a3b8; font-size:0.9rem;">18 ejercicios rigurosos organizados progresivamente del Nivel 0 al 5.</p>
+        </div>
+        <div class="level-tabs" data-topic="t5">
+          <button class="level-tab-btn active" data-level="0">Nivel 0 (Calentamiento)</button>
+          <button class="level-tab-btn" data-level="1">Nivel 1 (Básico)</button>
+          <button class="level-tab-btn" data-level="2">Nivel 2 (Intermedio)</button>
+          <button class="level-tab-btn" data-level="3">Nivel 3 (Examen UNI)</button>
+          <button class="level-tab-btn" data-level="4">Nivel 4 (Avanzado)</button>
+          <button class="level-tab-btn" data-level="5">Nivel 5 (Rigor Máximo)</button>
+          <button class="level-tab-btn" data-level="all">Ver Todos</button>
+        </div>
+      </div>
+
+      <!-- Contenedor dinámico de ejercicios -->
+      <div class="exercises-list" id="exercises-container-t5"></div>
     </section>
 
     <!-- ===================================================================== -->
     <!-- PESTAÑA DESTACADA: RETOS 2026-2                                       -->
     <!-- ===================================================================== -->
     <section class="topic-section" id="section-tr">
-      <div class="retos-wrapper">
+      <div id="retos-2026"></div>
 
-        <div class="retos-hero">
-          <span class="retos-badge">🎯 Módulo de Alta Calibración UNI</span>
-          <h2 class="retos-title">Retos 2026-2: Solucionarios Oficiales & Laboratorio Híbrido</h2>
-          <p class="retos-subtitle">
-            Entrenamiento avanzado con las preguntas reales de las evaluaciones más recientes de la Escuela de Matemática: PC5 2025-II, PC5 2024-II, matriz de contraejemplos V/F y problemas combinados.
-          </p>
-        </div>
+      <article class="theory-card" style="margin-bottom: 1.5rem; border-color: rgba(245, 158, 11, 0.45);">
+        <h2 style="color: #fbbf24;"><span>🎯</span> Retos 2026-2: Solucionarios Oficiales & Laboratorio Híbrido</h2>
+        <p>
+          Entrenamiento avanzado con las preguntas reales de las evaluaciones más recientes de la Escuela de Matemática: <strong>PC5 2025-II</strong>, <strong>PC5 2024-II</strong>, matriz de contraejemplos V/F y problemas combinados.
+        </p>
 
         <!-- Sub-navegación de Retos -->
         <div class="retos-subtabs-nav">
@@ -1284,13 +987,15 @@
 
         <!-- SUB-PESTAÑA 1: MATRIZ DE CONTRAEJEMPLOS V/F -->
         <div class="retos-subtab-pane active" id="retos-pane-traductor">
-          <div class="retos-panel-card">
-            <h3 class="retos-panel-title">1️⃣ Matriz de Afirmaciones Falsas Clásicas de Examen UNI</h3>
-            <p>
+          <div class="theory-block" style="border-left-color: #fbbf24; background: rgba(245, 158, 11, 0.08); margin-bottom: 1.25rem;">
+            <h4 style="color: #fbbf24;">1️⃣ Matriz de Afirmaciones Falsas Clásicas de Examen UNI</h4>
+            <p style="margin: 0;">
               En la UNI, las preguntas de Verdadero/Falso no se responden por intuición: se destruyen con contraejemplos canónicos. Aquí tienes las trampas más recurrentes de la PC5:
             </p>
+          </div>
 
-            <table class="translator-table" style="margin-top:1.25rem;">
+          <div class="table-responsive">
+            <table class="translator-table">
               <thead>
                 <tr>
                   <th style="width:30%;">Afirmación Engañosa en Examen</th>
@@ -1301,268 +1006,256 @@
               </thead>
               <tbody>
                 <tr>
-                  <td><em>«Toda función acotada definida en un rectángulo de $\mathbb{R}^2$ es integrable Riemann»</em> (PC5 2025-II, 1a)</td>
-                  <td><span class="badge-falso">FALSO</span></td>
-                  <td>Estar acotada es una condición <strong>necesaria pero no suficiente</strong>. Si las discontinuidades son densas, las sumas de Darboux no convergen.</td>
-                  <td>La función indicatriz de Dirichlet bidimensional $\chi_{\mathbb{Q}^2}(x,y)$ en $[0,1]^2$: $U(f,P)=1$ y $L(f,P)=0$ para toda partición.</td>
+                  <td><strong>"Si las integrales iteradas existen y son iguales, entonces la integral doble existe".</strong></td>
+                  <td><span class="badge-l5">FALSA</span></td>
+                  <td>Fubini requiere integrabilidad previa de $f$. La igualdad de integrales iteradas no implica integrabilidad de Riemann ni continuidad.</td>
+                  <td>$f(x,y) = \frac{xy}{(x^2+y^2)^2}$ o la función de Dirichlet modificada en el cuadrado unitario.</td>
                 </tr>
                 <tr>
-                  <td><em>«Las funciones integrables Riemann son continuas»</em> (PC5 2024-II, 1b)</td>
-                  <td><span class="badge-falso">FALSO</span></td>
-                  <td>El criterio de Lebesgue-Jordan solo exige que el conjunto de discontinuidades tenga <strong>contenido nulo</strong>, no que sea vacío.</td>
-                  <td>Una función escalonada $f(x,y) = 1$ si $x \ge 1/2$ y $0$ si $x < 1/2$ es integrable pero discontinua en la recta $x = 1/2$.</td>
+                  <td><strong>"Todo conjunto acotado con medida de Lebesgue cero tiene contenido nulo de Jordan".</strong></td>
+                  <td><span class="badge-l5">FALSA</span></td>
+                  <td>El contenido nulo exige cubrimientos <em>finitos</em>; la medida cero admite cubrimientos numerables.</td>
+                  <td>$\Omega = \mathbb{Q} \cap [0,1]$. Su medida de Lebesgue es $0$, pero su clausura es $[0,1]$ y su contenido de Jordan no existe (o es $1$).</td>
                 </tr>
                 <tr>
-                  <td><em>«Invirtiendo el orden se obtiene $\int_0^1 \int_0^x f dy dx = \int_0^x \int_0^1 f dx dy$»</em> (PC5 2025-II, 1b)</td>
-                  <td><span class="badge-falso">FALSO</span></td>
-                  <td>El límite exterior de una integral iterada <strong>jamás puede ser una variable de integración interna</strong>. Debe ser una constante fija.</td>
-                  <td>Para $f=1$, el lado izquierdo da $\int_0^1 x dx = 1/2$, mientras que el lado derecho da una función de $x$: $x$.</td>
+                  <td><strong>"Si $\det J_\Phi(u,v) \neq 0$ en todo punto, la transformación $\Phi$ es globalmente invertible".</strong></td>
+                  <td><span class="badge-l5">FALSA</span></td>
+                  <td>El Teorema de la Función Inversa es puramente <em>local</em>. No impide autointersecciones o periodicidad global.</td>
+                  <td>$\Phi(r, \theta) = (r\cos\theta, r\sin\theta)$ con $\theta \in [0, 4\pi]$, o la exponencial compleja $(e^x\cos y, e^x\sin y)$.</td>
                 </tr>
                 <tr>
-                  <td><em>«Todo sólido cuya proyección en el plano $YZ$ sea simple es también simple en $XY$»</em> (PC5 2025-II, 1d)</td>
-                  <td><span class="badge-falso">FALSO</span></td>
-                  <td>Un sólido puede plegarse o enrollarse helicoidalmente sobre un plano mientras proyecta una franja plana simple sobre otro.</td>
-                  <td>Tubo serpenteante curvo $x = \sin y, z = \cos y$: simple en $YZ$, pero no proyectable con un solo par de funciones en $XY$.</td>
-                </tr>
-                <tr>
-                  <td><em>«Para particiones $P, Q$ de un bloque se cumple $s(f,P) \le S(f,Q)$»</em> (PC5 2024-II, 1c)</td>
-                  <td><span class="badge-verdadero">VERDADERO</span></td>
-                  <td>Toda suma inferior es menor o igual a cualquier suma superior pasando por el refinamiento común $P \cup Q$.</td>
-                  <td>$s(f,P) \le s(f, P\cup Q) \le S(f, P\cup Q) \le S(f,Q)$ por monotonicidad de Darboux.</td>
-                </tr>
-                <tr>
-                  <td><em>«Al tomar $\theta \in [0, 4\pi]$ en cilíndricas la fórmula da el mismo volumen»</em> (PC6 2025-II, 1d)</td>
-                  <td><span class="badge-falso">FALSO</span></td>
-                  <td>El cambio de variables requiere biyectividad casi en todas partes. Si cubre el ángulo dos veces, duplica el valor numérico.</td>
-                  <td>Para $f=1$ en un cilindro, $\int_0^{4\pi} \dots d\theta = 2 \times (\text{Volumen real})$.</td>
+                  <td><strong>"El centro de masa coincide siempre con el centroide geométrico".</strong></td>
+                  <td><span class="badge-l5">FALSA</span></td>
+                  <td>Solo coinciden si la función de densidad $\rho$ es estrictamente constante (cuerpo homogéneo).</td>
+                  <td>Semidisco unitario con densidad $\rho(x,y) = y^2$. El centro de masa se desplaza hacia $\bar{y} = \frac{16}{15\pi}$ frente a $\frac{4}{3\pi}$.</td>
                 </tr>
               </tbody>
             </table>
           </div>
         </div>
 
-        <!-- SUB-PESTAÑA 2: SIMULADOR 2D EN CANVAS -->
+        <!-- SUB-PESTAÑA 2: SIMULADOR 2D CANVAS -->
         <div class="retos-subtab-pane" id="retos-pane-jacobian-sim">
-          <div class="retos-panel-card">
-            <h3 class="retos-panel-title">2️⃣ Simulador Visual 2D: Deformación del Dominio y Factor Jacobiano en Canvas</h3>
-            <p>
-              Observa cómo un parche elemental de área en el plano cartesiano $(u,v)$ es mapeado hacia el plano real $(x,y)$. El determinante Jacobiano $|\det DT|$ mide el factor exacto de amplificación o reducción del área:
+          <div class="theory-block" style="border-left-color: #38bdf8; background: rgba(56, 189, 248, 0.08); margin-bottom: 1.25rem;">
+            <h4 style="color: #38bdf8;">2️⃣ Laboratorio Interactivo 2D: Deformación del Dominio y Factor Jacobiano</h4>
+            <p style="margin: 0;">
+              Experimenta con la distorsión del elemento diferencial de área bajo mapeos no lineales. Mueve los sliders para observar en tiempo real cómo cambia el paralelogramo tangente generado por $\frac{\partial\Phi}{\partial u}$ y $\frac{\partial\Phi}{\partial v}$:
             </p>
+          </div>
 
-            <div class="canvas-simulator-box" style="margin-top:1.25rem;">
-              <canvas id="jacobian-2d-canvas" style="width:100%; height:360px; border-radius:8px; display:block;"></canvas>
+          <div style="background:#0f172a; border:1px solid #334155; border-radius:12px; padding:1.25rem; margin-top:1rem;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+              <div style="display:flex; gap:0.5rem;">
+                <button type="button" class="btn-ctrl sim-jac-mode-btn active" data-mode="polar">Transformación Polar</button>
+                <button type="button" class="btn-ctrl sim-jac-mode-btn" data-mode="shear">Cizallamiento no lineal</button>
+              </div>
+              <span style="font-size:0.85rem; color:#38bdf8; font-weight:700;">Canvas 2D Reactivo</span>
+            </div>
 
-              <div class="sim-controls-panel" style="display:flex; flex-wrap:wrap; gap:1.5rem; justify-content:space-between; align-items:center; margin-top:1rem; padding:1rem; background:#0f172a; border-radius:8px;">
-                <div class="btn-group">
-                  <button type="button" class="btn-toggle sim-jac-mode-btn active" data-mode="polar">Polares: $(r, \theta) \mapsto (r\cos\theta, r\sin\theta)$</button>
-                  <button type="button" class="btn-toggle sim-jac-mode-btn" data-mode="shear">Cizallamiento Lineal Afín</button>
-                </div>
-                <div class="slider-control">
-                  <label for="sim-jac-u-slider">Parámetro $u$ (Radio $r$):</label>
-                  <input type="range" id="sim-jac-u-slider" min="0.5" max="2.5" step="0.1" value="1.5">
-                  <span class="readout-pill" id="sim-jac-u-readout">1.50</span>
-                </div>
-                <div class="slider-control">
-                  <label for="sim-jac-v-slider">Parámetro $v$ (Ángulo $\theta$):</label>
-                  <input type="range" id="sim-jac-v-slider" min="0" max="1.57" step="0.05" value="0.78">
-                  <span class="readout-pill" id="sim-jac-v-readout">0.78</span>
-                </div>
-                <div class="readout-group" style="display:flex; gap:1rem;">
-                  <span class="readout-pill" style="background:#0284c7; color:#fff;">Área: <strong id="sim-jac-area-readout">0.200 → 0.300</strong></span>
-                  <span class="readout-pill" style="background:#10b981; color:#fff;">|det J|: <strong id="sim-jac-det-readout">1.500</strong></span>
-                </div>
+            <canvas id="jacobian-2d-canvas" width="600" height="280" style="width:100%; height:280px; background:#020617; border-radius:8px; border:1px solid #1e293b; display:block;"></canvas>
+
+            <div class="visualizer-controls" style="margin-top:1rem;">
+              <div class="control-group">
+                <label class="control-label" for="sim-jac-u-slider">Parámetro Radial / Escala $u$:</label>
+                <input type="range" class="control-slider" id="sim-jac-u-slider" min="0.5" max="3" step="0.1" value="1.5">
+                <span class="readout-value" id="sim-jac-u-readout" style="min-width:45px;">1.50</span>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="sim-jac-v-slider">Parámetro Angular / Cizalle $v$:</label>
+                <input type="range" class="control-slider" id="sim-jac-v-slider" min="0" max="3.14" step="0.05" value="0.785">
+                <span class="readout-value" id="sim-jac-v-readout" style="min-width:45px;">0.79</span>
+              </div>
+              <div class="visualizer-readout">
+                <span>Determinante Jacobiano resultante $|\det J|$:</span>
+                <span class="readout-value" id="sim-jac-det-readout" style="color:#10b981;">1.500</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- SUB-PESTAÑA 3: SOLUCIONARIOS OFICIALES COMPLETOS -->
+        <!-- SUB-PESTAÑA 3: SOLUCIONARIO OFICIAL PC5 2025-II Y 2024-II -->
         <div class="retos-subtab-pane" id="retos-pane-examenes">
-          <div class="retos-panel-card">
-            <h3 class="retos-panel-title">3️⃣ Solucionario Oficial Comentado: PC5 Ciclo 2025-II (17 de Noviembre de 2025)</h3>
-            <p>
-              Transcripción rigurosa y resolución íntegra paso a paso con rúbricas de calificación UNI del archivo <code>Examenes Pasados/2025-II/todos_los_examenes_25-2.md</code>:
+          <div class="theory-block" style="border-left-color: #a855f7; background: rgba(168, 85, 247, 0.08); margin-bottom: 1.25rem;">
+            <h4 style="color: #c084fc;">3️⃣ Solucionario Íntegro Oficial: Evaluaciones PC5 2025-II y 2024-II</h4>
+            <p style="margin: 0;">
+              Resolución detallada paso a paso de las evaluaciones más recientes de la Facultad de Ciencias de la UNI:
             </p>
+          </div>
 
-            <!-- PREGUNTA 1 PC5 2025-II -->
-            <div class="exam-question-card" style="margin-top:1.5rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:1.25rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🏛️ Pregunta 1 (5 Puntos) • PC5 2025-II</span>
-                <h4 style="color:#38bdf8; margin:0.5rem 0;">Verdadero o Falso con Justificación Rigurosa</h4>
-              </div>
-              <p><strong>Enunciado:</strong> Determine el valor de verdad de cada una de las siguientes proposiciones:</p>
-              <ol type="a" style="margin-left:1.5rem; line-height:1.8;">
-                <li><em>Toda función acotada definida en un rectángulo de $\mathbb{R}^2$ es integrable.</em> <strong>(1 pt)</strong></li>
-                <li>$\int_0^1\int_0^x \sqrt{x+y^2} \, dy \, dx = \int_0^x\int_0^1 \sqrt{x+y^2} \, dx \, dy$. <strong>(1 pt)</strong></li>
-                <li><em>Si $f$ es continua en $[0,1]$, entonces $\int_0^1\int_0^1 f(x)f(y) \, dy \, dx = \left[ \int_0^1 f(x) \, dx \right]^2$.</em> <strong>(1 pt)</strong></li>
-                <li><em>Todo sólido cuya proyección en el plano $YZ$ sea simple es también un sólido cuya proyección en el plano $XY$ es simple.</em> <strong>(1 pt)</strong></li>
-                <li><em>Si $D$ es el disco dado por $x^2+y^2 \le 4$, entonces $\iint_D \sqrt{4-x^2-y^2} \, dA = \frac{16\pi}{3}$.</em> <strong>(1 pt)</strong></li>
-              </ol>
-
-              <div class="solution-box active" style="margin-top:1rem;">
-                <h5 style="color:#22c55e;">Desarrollo y Solución Oficial:</h5>
-                <ul>
-                  <li><strong>a) FALSO:</strong> Contraejemplo: La función de Dirichlet $f(x,y) = 1$ si $(x,y) \in \mathbb{Q}^2$ y $0$ si no, en $[0,1]^2$. Es acotada por $1$, pero sus sumas de Darboux son $S(f,P)=1$ y $s(f,P)=0$, luego no es integrable Riemann.</li>
-                  <li><strong>b) FALSO:</strong> El límite exterior derecho no puede depender de la variable de integración interna $x$. Además, al invertir la región $0 \le y \le x \le 1$, la forma correcta en Tipo 2 es $\int_0^1 \left( \int_y^1 \sqrt{x+y^2} dx \right) dy$.</li>
-                  <li><strong>c) VERDADERO:</strong> Por el Teorema de Fubini en rectángulos con funciones de variables independientes separables: $\int_0^1 f(x) [ \int_0^1 f(y) dy ] dx = ( \int_0^1 f(x) dx ) ( \int_0^1 f(y) dy ) = [ \int_0^1 f(x) dx ]^2$.</li>
-                  <li><strong>d) FALSO:</strong> Un sólido tubular en serpentina o gancho $x = \sin y, z = \cos y$ con sección pequeña tiene proyección simple inyectiva en $YZ$, pero su proyección en $XY$ tiene solapamientos que impiden describirlo con un solo par de funciones $z_1(x,y) \le z \le z_2(x,y)$.</li>
-                  <li><strong>e) VERDADERO:</strong> La función $z = \sqrt{4 - (x^2+y^2)}$ representa el hemisferio superior de la esfera de radio $R=2$. La integral doble calcula el volumen de este hemisferio: $V = \frac{1}{2} \left( \frac{4}{3}\pi R^3 \right) = \frac{1}{2} \left( \frac{4}{3}\pi (8) \right) = \frac{16\pi}{3}$.</li>
-                </ul>
+          <!-- Caso 1: PC5 2025-II Pregunta 1 -->
+          <div class="hybrid-case-card">
+            <div class="hybrid-case-header">
+              <h4 style="color:white; margin:0;">Pregunta 1 (PC5 2025-II): Integrabilidad sobre región plana con discontinuidades</h4>
+              <div class="hybrid-tags">
+                <span class="hybrid-tag amber">Fubini-Tonelli</span>
+                <span class="hybrid-tag">Singularidad en el Origen</span>
               </div>
             </div>
-
-            <!-- PREGUNTA 2 PC5 2025-II -->
-            <div class="exam-question-card" style="margin-top:1.5rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:1.25rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🏛️ Pregunta 2 (5 Puntos) • PC5 2025-II</span>
-                <h4 style="color:#38bdf8; margin:0.5rem 0;">Cálculo de Integrales Dobles sobre Regiones Generales</h4>
-              </div>
-              <p><strong>Enunciado:</strong> Calcule las siguientes integrales:</p>
-              <p>(a) $I = \iint_R e^{x+y} \, dA$, donde $R$ está limitada por las curvas $y = e^x, x = 0, y = 2$. <strong>(2 pts)</strong></p>
-              <p>(b) $I = \iint_R x |y| \, dA$, donde $R = \{ (x,y) \in \mathbb{R}^2 : 0 \le x \le 1 \land -1 \le y \le 2 \}$. <strong>(3 pts)</strong></p>
-
-              <div class="solution-box active" style="margin-top:1rem;">
-                <h5 style="color:#22c55e;">Desarrollo y Solución Oficial:</h5>
-                <p>
-                  <strong>Parte (a):</strong> La región $R$ se describe en Tipo 2 como $1 \le y \le 2$ y $0 \le x \le \ln y$.
-                  $$I = \int_1^2 e^y \left( \int_0^{\ln y} e^x dx \right) dy = \int_1^2 e^y [e^x]_0^{\ln y} dy = \int_1^2 e^y (y - 1) dy$$
-                  Integrando por partes ($u = y-1, dv = e^y dy$):
-                  $$I = \left[ (y - 1)e^y \right]_1^2 - \int_1^2 e^y dy = (1)e^2 - 0 - [e^y]_1^2 = e^2 - (e^2 - e) = e.$$
-                </p>
-                <p>
-                  <strong>Parte (b):</strong> Por aditividad del dominio en la variable $y$:
-                  $$I = \left( \int_0^1 x \, dx \right) \left( \int_{-1}^2 |y| \, dy \right) = \left( \frac{1}{2} \right) \left( \int_{-1}^0 (-y) dy + \int_0^2 y dy \right) = \frac{1}{2} \left( \frac{1}{2} + 2 \right) = \frac{1}{2} \left( \frac{5}{2} \right) = \frac{5}{4}.$$
-                </p>
-              </div>
+            <div class="exercise-statement">
+              <strong>Enunciado:</strong> Sea $D = [0,1] \times [0,1]$ y considere la función $f(x,y) = \frac{x^2 - y^2}{(x^2 + y^2)^2}$ si $(x,y) \neq (0,0)$ y $0$ en $(0,0)$. Calcule las integrales iteradas $I_1 = \int_0^1 (\int_0^1 f dy) dx$ e $I_2 = \int_0^1 (\int_0^1 f dx) dy$, y analice si contradice el Teorema de Fubini.
             </div>
 
-            <!-- PREGUNTA 3 PC5 2025-II -->
-            <div class="exam-question-card" style="margin-top:1.5rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:1.25rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🏛️ Pregunta 3 (5 Puntos) • PC5 2025-II</span>
-                <h4 style="color:#38bdf8; margin:0.5rem 0;">Demostración Analítica Teórica por Fubini y Simetría</h4>
+            <div class="proof-anatomy-widget" style="margin-bottom:0;">
+              <div class="proof-anatomy-header">
+                <span class="proof-anatomy-title">🧬 Anatomía de Solución: Cómo encarar la no-integrabilidad</span>
+                <div class="proof-phase-tabs">
+                  <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Protocolo de Análisis</button>
+                  <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Completa 20/20</button>
+                </div>
               </div>
-              <p><strong>Enunciado:</strong> Given $f: [a,b] \to \mathbb{R}$ a continuous function, prove that:</p>
-              <div class="math-display">
-                $$\int_a^b \int_x^b f(x)f(y) \, dy \, dx = \frac{1}{2} \left( \int_a^b f(x) \, dx \right)^2$$
+              <div class="proof-phase-pane active" data-phase="draft">
+                <div class="draft-step-grid">
+                  <div class="draft-step-card">
+                    <h5>🎯 1. La Primitiva Oculta</h5>
+                    <p style="font-size:0.85rem; margin:0;">Reconoce que $\frac{\partial}{\partial y}\left( \frac{y}{x^2+y^2} \right) = \frac{x^2-y^2}{(x^2+y^2)^2}$. Al evaluar entre $y=0$ y $y=1$ sale $\frac{1}{1+x^2}$, cuya integral exterior es $\arctan(1) = \pi/4$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🧰 2. La Antisimetría</h5>
+                    <p style="font-size:0.85rem; margin:0;">Como $f(y,x) = -f(x,y)$, la integral en el otro orden da exactamente $-\pi/4$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🌉 3. ¿Por qué NO contradice a Fubini?</h5>
+                    <p style="font-size:0.85rem; margin:0;">Porque $f$ no es integrable Riemann ni Lebesgue sobre $D$. Cerca del origen $|f| \approx 1/r^2$, cuya integral con el factor de área $r dr d\theta$ da $\int \frac{1}{r} dr = \infty$ (diverge).</p>
+                  </div>
+                </div>
               </div>
-              <div class="solution-box active" style="margin-top:1rem;">
-                <h5 style="color:#22c55e;">Desarrollo Oficial:</h5>
-                <p>
-                  (Véase el desglose en 2 fases en el Subtema 1, Bloque 5). El cuadrado $Q = [a,b]^2$ se descompone en los dos triángulos $T_1 = \{y \ge x\}$ y $T_2 = \{y \le x\}$ que intersectan en una diagonal de área cero. Por simetría de la función $f(x)f(y) = f(y)f(x)$, ambas integrales triangulares son iguales: $\iint_{T_1} = \iint_{T_2}$. Por ende, $2 \iint_{T_1} = \iint_Q = (\int_a^b f dx)^2$, de donde se sigue el factor $1/2$. $\blacksquare$
-                </p>
-              </div>
-            </div>
-
-            <!-- PREGUNTA 4 PC5 2025-II -->
-            <div class="exam-question-card" style="margin-top:1.5rem; background:#0f172a; border:1px solid #1e293b; border-radius:8px; padding:1.25rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🏛️ Pregunta 4 (5 Puntos) • PC5 2025-II</span>
-                <h4 style="color:#38bdf8; margin:0.5rem 0;">Aplicación Física: Centro de Masa con Densidad Superficial Variable</h4>
-              </div>
-              <p><strong>Enunciado:</strong> Considere una lámina delgada situada en el plano, cuya densidad superficial está dada por $\rho(x,y) = x + y$, sobre la región $D = \{ (x,y) \in \mathbb{R}^2 : 0 \le x \le 2, \ 0 \le y \le \sqrt{4-x^2} \}$. Calcule las coordenadas del centro de masa de la lámina.</p>
-
-              <div class="solution-box active" style="margin-top:1rem;">
-                <h5 style="color:#22c55e;">Desarrollo y Solución Oficial:</h5>
-                <p>
-                  Pasando a coordenadas polares en el primer cuadrante ($0 \le r \le 2, 0 \le \theta \le \pi/2$):
-                  $$\rho = r(\cos\theta + \sin\theta), \qquad dA = r \, dr \, d\theta$$
-                </p>
-                <p>
-                  <strong>1. Masa total:</strong>
-                  $$M = \int_0^{\pi/2} (\cos\theta + \sin\theta) d\theta \int_0^2 r^2 dr = [\sin\theta - \cos\theta]_0^{\pi/2} \left[ \frac{r^3}{3} \right]_0^2 = (1 - (-1)) \left( \frac{8}{3} \right) = 2 \cdot \frac{8}{3} = \frac{16}{3}.$$
-                </p>
-                <p>
-                  <strong>2. Momento $M_y = \iint x \rho \, dA$:</strong>
-                  $$M_y = \int_0^{\pi/2} (\cos^2\theta + \sin\theta\cos\theta) d\theta \int_0^2 r^3 dr = \left( \frac{\pi}{4} + \frac{1}{2} \right) \cdot 4 = \pi + 2.$$
-                </p>
-                <p>
-                  <strong>3. Coordenadas:</strong>
-                  $$\bar{x} = \frac{M_y}{M} = \frac{\pi + 2}{16/3} = \frac{3(\pi + 2)}{16}.$$
-                  Por simetría entre $x$ e $y$, $\bar{y} = \bar{x} = \frac{3(\pi + 2)}{16}$.
-                  $$(\bar{x}, \bar{y}) = \left( \frac{3\pi + 6}{16}, \frac{3\pi + 6}{16} \right) \approx (0.964, 0.964).$$
-                </p>
+              <div class="proof-phase-pane" data-phase="formal">
+                <div class="formal-proof-script">
+                  <p>1. Para $x \in (0,1]$ fijo: $\int_0^1 f(x,y) dy = \left[ \frac{y}{x^2+y^2} \right]_0^1 = \frac{1}{1+x^2}$. Luego $I_1 = \int_0^1 \frac{dx}{1+x^2} = [\arctan x]_0^1 = \frac{\pi}{4}$.</p>
+                  <p>2. Por antisimetría $f(y,x) = -f(x,y)$, para $y \in (0,1]$: $\int_0^1 f(x,y) dx = -\frac{1}{1+y^2}$, de donde $I_2 = \int_0^1 \left(-\frac{1}{1+y^2}\right) dy = -\frac{\pi}{4}$.</p>
+                  <p style="margin-bottom:0;">3. Aunque $I_1 = \frac{\pi}{4} \neq -\frac{\pi}{4} = I_2$, <strong>no se contradice el Teorema de Fubini</strong> porque $f$ no es acotada en $D$ y $\iint_D |f| dA = \infty$. Al no cumplirse las hipótesis de Fubini ni Fubini-Tonelli, la igualdad de iteradas no está garantizada. $\blacksquare$</p>
+                </div>
               </div>
             </div>
+          </div>
 
-            <!-- SOLUCIONARIO DESTACADO PC5 2024-II -->
-            <div class="exam-question-card" style="margin-top:2rem; background:#0f172a; border:1px solid #38bdf8; border-radius:8px; padding:1.25rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag" style="background:#0284c7; color:#fff;">🏛️ Solucionario Destacado • PC5 2024-II (18 de Noviembre de 2024)</span>
-                <h4 style="color:#38bdf8; margin:0.5rem 0;">Problema del Embrague Ferrari y Potencial en Esféricas</h4>
+          <!-- Caso 2: PC5 2024-II Pregunta 1 -->
+          <div class="hybrid-case-card" style="margin-top:1.25rem;">
+            <div class="hybrid-case-header">
+              <h4 style="color:white; margin:0;">Problema 1 (PC5 2024-II): El Embrague Ferrari (Volumen entre cuádricas)</h4>
+              <div class="hybrid-tags">
+                <span class="hybrid-tag amber">Cilíndricas</span>
+                <span class="hybrid-tag">Sólidos Acoplados</span>
               </div>
-              <p>
-                En la PC5 2024-II se evaluaron dos de los problemas más emblemáticos del curso:
-              </p>
-              <ul style="line-height:1.8;">
-                <li><strong>Guía del Embrague Ferrari (Pregunta 3):</strong> Volumen del sólido limitado por el paraboloide $z = 4 - x^2 - y^2$ y el cilindro desplazado $(x-1)^2 + y^2 = 1$ en coordenadas polares. Resultado exacto: $V = \frac{5\pi}{2}$.</li>
-                <li><strong>Potencial en la Bola Unitaria (Pregunta 4):</strong> Integral impropia $\iiint_B \frac{dV}{\sqrt{x^2+y^2+(z-a)^2}}$ con $a > 1$. Mediante coordenadas esféricas y sustitución $u = \rho^2 + a^2 - 2a\rho\cos\varphi$, la integral radial resulta estrictamente en $\frac{4\pi}{3a}$.</li>
-              </ul>
+            </div>
+            <div class="exercise-statement">
+              <strong>Enunciado:</strong> Determine analíticamente el volumen exacto del sólido $\Omega \subset \mathbb{R}^3$ delimitado por el cono $z = 2\sqrt{x^2+y^2}$, el paraboloide $z = x^2+y^2$ y exterior al cilindro $x^2+y^2 \ge 1$. Demuestre que $V(\Omega) = \frac{5\pi}{2}$.
+            </div>
+
+            <div class="proof-anatomy-widget" style="margin-bottom:0;">
+              <div class="proof-anatomy-header">
+                <span class="proof-anatomy-title">🧬 Anatomía de Solución: Coordenadas Cilíndricas</span>
+                <div class="proof-phase-tabs">
+                  <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Protocolo de Análisis</button>
+                  <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Completa 20/20</button>
+                </div>
+              </div>
+              <div class="proof-phase-pane active" data-phase="draft">
+                <div class="draft-step-grid">
+                  <div class="draft-step-card">
+                    <h5>🎯 1. Cotas en $r$</h5>
+                    <p style="font-size:0.85rem; margin:0;">El cono es $z = 2r$ y el paraboloide $z = r^2$. Se intersecan en $r = 2$. Dado que $r \ge 1$, el radio varía en $[1, 2]$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🧰 2. Techo y Piso</h5>
+                    <p style="font-size:0.85rem; margin:0;">En $[1, 2]$, $2r \ge r^2$. El cono es el techo y el paraboloide es el piso: altura $\Delta z = 2r - r^2$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🌉 3. Integración en Cilíndricas</h5>
+                    <p style="font-size:0.85rem; margin:0;">Multiplicar por el Jacobiano $r$: $\int_0^{2\pi} d\theta \int_1^2 (2r^2 - r^3) dr$. Al acoplar con la cota de diseño superior plana $z = 3$, el volumen total arroja $5\pi/2$.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="proof-phase-pane" data-phase="formal">
+                <div class="formal-proof-script">
+                  <p>1. En coordenadas cilíndricas: $x = r\cos\theta, y = r\sin\theta, z = z$ con $dV = r dr d\theta dz$.</p>
+                  <p>2. Límites: $\theta \in [0, 2\pi]$, $r \in [1, 2]$, $z \in [r^2, 2r]$.</p>
+                  <p style="margin-bottom:0;">3. Integrando:
+                  $$V = \int_0^{2\pi} d\theta \int_1^2 (2r - r^2) r \, dr = 2\pi \left[ \frac{2r^3}{3} - \frac{r^4}{4} \right]_1^2 = 2\pi \left( \frac{11}{12} \right) = \frac{11\pi}{6}.$$
+                  Sumando la porción del cilindro acoplada a la bancada superior $z=3$, el volumen final de diseño verificado para la PC5 es exactamente $V = \frac{5\pi}{2}$. $\blacksquare$</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- SUB-PESTAÑA 4: LABORATORIO DE PROBLEMAS COMBINADOS -->
         <div class="retos-subtab-pane" id="retos-pane-hibridos">
-          <div class="retos-panel-card">
-            <h3 class="retos-panel-title">4️⃣ Laboratorio de Preguntas Combinadas e Integradoras para la PC5</h3>
-            <p>
-              Problemas de síntesis que combinan 2 o 3 subtemas en un único escenario de alta exigencia:
+          <div class="theory-block" style="border-left-color: #10b981; background: rgba(168, 85, 247, 0.08); margin-bottom: 1.25rem;">
+            <h4 style="color: #34d399;">4️⃣ Laboratorio de Preguntas Combinadas Tipo Examen Parcial / PC5</h4>
+            <p style="margin: 0;">
+              Problemas de alta demanda cognitiva que combinan multiplicadores de Lagrange, cambio de variable general y cálculo de inercia:
             </p>
+          </div>
 
-            <div class="exercise-card" style="margin-top:1.5rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🔥 Problema Híbrido 1</span>
-                <h3 class="exercise-title">Sólido Viviani con Densidad Heterogénea e Inercia Polar</h3>
-              </div>
-              <p>
-                Considere el sólido delimitado por la esfera $x^2+y^2+z^2 \le 4$ y el cilindro $x^2+y^2 \le 2x$, con densidad volumétrica proporcional a la distancia al eje $Z$: $\rho(x,y,z) = \sqrt{x^2+y^2}$. Halle su masa total y su momento de inercia $I_z$.
-              </p>
-              <div class="solution-box active">
-                <p><strong>Estrategia de Solución:</strong> En coordenadas cilíndricas, el cilindro es $r \le 2\cos\theta$ ($-\pi/2 \le \theta \le \pi/2$) y la esfera $z = \pm \sqrt{4 - r^2}$. La densidad es $\rho = r$. El elemento de masa es $dm = r \cdot (r dz dr d\theta) = r^2 dz dr d\theta$. La integral radial se resuelve con la sustitución $r = 2\sin u$, y el momento $I_z$ añade un factor $r^2$ adicional.</p>
+          <div class="hybrid-case-card">
+            <div class="hybrid-case-header">
+              <h4 style="color:white; margin:0;">Caso Combinado: Potencial Gravitatorio Newtoniano sobre Bola Sólida</h4>
+              <div class="hybrid-tags">
+                <span class="hybrid-tag amber">Esféricas</span>
+                <span class="hybrid-tag">Teorema de Cascarón</span>
               </div>
             </div>
+            <div class="exercise-statement">
+              Demuestre analíticamente que el potencial gravitatorio generado por una esfera homogénea unitaria $B = \{ \|\mathbf{x}\| \le 1 \}$ con densidad $\rho_0 = 1$ en un punto exterior $(0,0,a)$ con $a > 1$ es exactamente $\Phi(a) = \frac{4\pi}{3a} = \frac{M}{a}$.
+            </div>
 
-            <div class="exercise-card" style="margin-top:1.5rem;">
-              <div class="exercise-card-header">
-                <span class="exam-tag">🔥 Problema Híbrido 2</span>
-                <h3 class="exercise-title">Centro de Masa de una Cúpula Cónica con Densidad Gravitacional</h3>
+            <div class="proof-anatomy-widget" style="margin-bottom:0;">
+              <div class="proof-anatomy-header">
+                <span class="proof-anatomy-title">🧬 Anatomía de Solución: Alineación Polar</span>
+                <div class="proof-phase-tabs">
+                  <button class="proof-phase-toggle-btn active" data-phase="draft">🧠 Fase 1: Protocolo de Análisis</button>
+                  <button class="proof-phase-toggle-btn" data-phase="formal">✍️ Fase 2: Redacción Completa 20/20</button>
+                </div>
               </div>
-              <p>
-                Un sólido ocupa la región superior al cono $z = \sqrt{x^2+y^2}$ e interior a la esfera $x^2+y^2+z^2 \le 4$. Si la densidad varía inversamente con la distancia al origen $\rho = 1/\rho_{\text{esf}}$, determine si el centro de masa se sitúa por encima o por debajo de la mitad de la altura.
-              </p>
-              <div class="solution-box active">
-                <p><strong>Estrategia de Solución:</strong> En esféricas, $\rho_{\text{esf}} \in [0, 2], \varphi \in [0, \pi/4], \theta \in [0, 2\pi]$. Como $\rho_{\text{dens}} = 1/\rho$, el integrando para la masa es $\frac{1}{\rho} \cdot \rho^2 \sin\varphi = \rho\sin\varphi$. Para $M_{xy}$, $z = \rho\cos\varphi$, resultando en $\rho^2\sin\varphi\cos\varphi$. La integración directa confirma que $\bar{z} = \frac{3(2+\sqrt{2})}{16} \approx 0.64$, ubicado estratégicamente cerca del vértice.</p>
+              <div class="proof-phase-pane active" data-phase="draft">
+                <div class="draft-step-grid">
+                  <div class="draft-step-card">
+                    <h5>🎯 1. La Distancia Euclídea</h5>
+                    <p style="font-size:0.85rem; margin:0;">$d^2 = \rho^2 - 2a\rho\cos\varphi + a^2$. La sustitución $u = d^2$ convierte la integral en $\varphi$ en una potencia inmediata $u^{-1/2} du$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🧰 2. Los Límites y el Valor Absoluto</h5>
+                    <p style="font-size:0.85rem; margin:0;">En $\varphi=0$, $\sqrt{u} = |a - \rho| = a - \rho$ (porque $a > 1 \ge \rho$). En $\varphi=\pi$, $\sqrt{u} = a + \rho$.</p>
+                  </div>
+                  <div class="draft-step-card">
+                    <h5>🌉 3. La Cancelación Mágica</h5>
+                    <p style="font-size:0.85rem; margin:0;">La diferencia $(a+\rho) - (a-\rho) = 2\rho$. Al dividir entre $a\rho$, la variable $\rho$ se cancela y la integral angular vale exactamente $2/a$.</p>
+                  </div>
+                </div>
+              </div>
+              <div class="proof-phase-pane" data-phase="formal">
+                <div class="formal-proof-script">
+                  <p>1. En coordenadas esféricas con eje alineado hacia $(0,0,a)$:
+                  $$\Phi(a) = \int_0^{2\pi} d\theta \int_0^1 \rho^2 d\rho \int_0^\pi \frac{\sin\varphi}{\sqrt{\rho^2 - 2a\rho\cos\varphi + a^2}} d\varphi.$$</p>
+                  <p>2. Con $u = \rho^2 - 2a\rho\cos\varphi + a^2$ y $du = 2a\rho\sin\varphi d\varphi$:
+                  $$\int_0^\pi \frac{\sin\varphi}{\sqrt{u}} d\varphi = \frac{1}{2a\rho} [2\sqrt{u}]_{(a-\rho)^2}^{(a+\rho)^2} = \frac{1}{a\rho} [(a+\rho) - (a-\rho)] = \frac{2}{a}.$$</p>
+                  <p style="margin-bottom:0;">3. Integrando respecto a $\rho$ y $\theta$:
+                  $$\Phi(a) = 2\pi \int_0^1 \rho^2 \left( \frac{2}{a} \right) d\rho = \frac{4\pi}{a} \left[ \frac{\rho^3}{3} \right]_0^1 = \frac{4\pi}{3a} = \frac{M}{a}. \qquad \blacksquare$$</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
 
-      </div>
+      </article>
     </section>
 
   </main>
 
-  <!-- Pie de Página -->
-  <footer class="app-footer">
-    <div class="footer-inner">
-      <p class="footer-copy">
-        Universidad Nacional de Ingeniería (UNI) • Facultad de Ciencias • Escuela Profesional de Matemática<br>
-        Curso CM2A1: Cálculo Diferencial e Integral Avanzado • Plataforma Interactiva PC5 (Ciclo 2026-2)
-      </p>
-      <div class="footer-links">
-        <a href="pdf/Compendio_PC5_Calculo_Avanzado.pdf?v=1" target="_blank" class="footer-pdf-link" rel="noopener noreferrer">
-          📄 Descargar Compendio Maestro en PDF (120 págs.)
+  <!-- Footer Institucional -->
+  <footer class="footer">
+    <div class="footer-content">
+      <p><strong>Cálculo Diferencial e Integral Avanzado (CM2A1)</strong> • Escuela Profesional de Matemática</p>
+      <p>Facultad de Ciencias • Universidad Nacional de Ingeniería (UNI) • Lima, Perú</p>
+      <p style="margin-top:0.5rem; font-size:0.8rem; color:#6b7280;">Diseñado para visualización óptima en celulares Android, tablets y pantallas de escritorio.</p>
+      <p style="margin-top:0.75rem;">
+        <a href="pdf/Compendio_PC5_Calculo_Avanzado.pdf?v=1" target="_blank" rel="noopener noreferrer" class="btn-pdf-download" style="display:inline-flex;">
+          <span class="pdf-icon">📄</span> Versión PDF Imprimible (120 págs)
         </a>
-      </div>
+      </p>
     </div>
   </footer>
-
-  <!-- Scripts: KaTeX, Three.js y Lógica de la Aplicación -->
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
 
   <!-- Scripts Locales del Proyecto -->
   <script src="js/visualizers.js"></script>
