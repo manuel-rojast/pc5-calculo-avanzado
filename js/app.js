@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initVisualizerForTopic(topicId);
 
     // Renderizar ejercicios del tema
-    if (topicId !== 'tr') {
+    if (topicId !== 'tr' && topicId !== 'glosario') {
       renderExercises(topicId);
     }
 
@@ -73,7 +73,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Inicialización bajo demanda de los visores 3D
   function initVisualizerForTopic(topicId) {
-    if (state.initializedVisualizers.has(topicId)) return;
+    if (state.initializedVisualizers.has(topicId) || topicId === 'glosario') return;
 
     setTimeout(() => {
       try {
@@ -240,6 +240,262 @@ document.addEventListener('DOMContentLoaded', () => {
     navRetosLink.addEventListener('click', (e) => {
       e.preventDefault();
       switchTopic('tr');
+      const temarioEl = document.getElementById('temario');
+      if (temarioEl) temarioEl.scrollIntoView({ behavior: 'smooth' });
+    });
+  }
+
+  // ============================================================================
+  // INTEGRACIÓN DEL GLOSARIO DE SÍMBOLOS Y DICCIONARIO MATEMÁTICO PC5
+  // ============================================================================
+
+  // Crear nodo DOM de una tarjeta de glosario
+  function createGlossaryCard(item, isSubtopic) {
+    const card = document.createElement('article');
+    card.className = 'glossary-card';
+    card.dataset.id = item.id;
+    card.dataset.topic = item.topic;
+
+    const topicShorts = {
+      t1: 'Subtema 1: Regiones & Fubini',
+      t2: 'Subtema 2: Variables & Polares',
+      t3: 'Subtema 3: Triples en R³',
+      t4: 'Subtema 4: Cilíndricas & Esféricas',
+      t5: 'Subtema 5: Rⁿ & Aplicaciones'
+    };
+    const topicLabel = topicShorts[item.topic] || item.topic.toUpperCase();
+
+    // Texto normalizado para el buscador en tiempo real
+    const searchText = [
+      item.symbol,
+      item.name,
+      item.reading,
+      item.simple,
+      item.action,
+      item.trap,
+      item.topic,
+      topicLabel
+    ].join(' ').toLowerCase();
+    card.dataset.searchText = searchText;
+
+    card.innerHTML = `
+      <div class="glossary-card-top">
+        <span class="glossary-topic-pill pill-${item.topic}">${topicLabel}</span>
+        <span class="glossary-card-id">#${item.id}</span>
+      </div>
+      <div class="glossary-symbol-banner">
+        <div class="glossary-symbol-math">${item.symbol}</div>
+      </div>
+      <h4 class="glossary-card-title">${item.name}</h4>
+
+      <div class="glossary-detail-section reading-section">
+        <div class="glossary-detail-label">🗣️ Cómo se lee en clase / examen:</div>
+        <div class="glossary-detail-text">«${item.reading}»</div>
+      </div>
+
+      <div class="glossary-detail-section simple-section">
+        <div class="glossary-detail-label">💡 Significado intuitivo:</div>
+        <div class="glossary-detail-text">${item.simple}</div>
+      </div>
+
+      <div class="glossary-detail-section action-section">
+        <div class="glossary-detail-label">✍️ Qué escribir en tu hoja de examen UNI:</div>
+        <div class="glossary-detail-text">${item.action}</div>
+      </div>
+
+      <div class="glossary-detail-section trap-section">
+        <div class="glossary-detail-label">⚠️ Trampa frecuente / Error clásico UNI:</div>
+        <div class="glossary-detail-text">${item.trap}</div>
+      </div>
+    `;
+
+    return card;
+  }
+
+  // Inicializar Glosario Maestro Universal
+  function initMasterGlossary() {
+    const container = document.getElementById('glossary-cards-container');
+    if (!container || !window.PC5_GLOSSARY_DATA) return;
+
+    const data = window.PC5_GLOSSARY_DATA;
+    const searchInput = document.getElementById('glossary-search-input');
+    const clearBtn = document.getElementById('glossary-search-clear');
+    const filterBtns = document.querySelectorAll('#glossary-topic-filters .glossary-pill-btn');
+    const visibleCountEl = document.getElementById('glossary-visible-count');
+    const totalCountEl = document.getElementById('glossary-total-count');
+    const emptyStateEl = document.getElementById('glossary-empty-state');
+    const resetBtn = document.getElementById('btn-reset-glossary-search');
+
+    if (totalCountEl) totalCountEl.textContent = data.length;
+
+    // Actualizar badges numéricos de cada subtema
+    if (window.PC5_GLOSSARY_BY_TOPIC) {
+      ['t1', 't2', 't3', 't4', 't5'].forEach(t => {
+        const cEl = document.getElementById(`count-${t}`);
+        if (cEl && window.PC5_GLOSSARY_BY_TOPIC[t]) {
+          cEl.textContent = window.PC5_GLOSSARY_BY_TOPIC[t].length;
+        }
+      });
+      const cAll = document.getElementById('count-all');
+      if (cAll) cAll.textContent = data.length;
+    }
+
+    container.innerHTML = '';
+    const cardNodes = [];
+    data.forEach(item => {
+      const card = createGlossaryCard(item, false);
+      container.appendChild(card);
+      cardNodes.push({
+        element: card,
+        topic: item.topic,
+        text: card.dataset.searchText
+      });
+    });
+
+    // Renderizar KaTeX acotado a la grilla
+    renderMath(container);
+
+    let activeTopicFilter = 'all';
+
+    function filterMasterCards() {
+      const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+      let visibleCount = 0;
+
+      cardNodes.forEach(itemObj => {
+        const matchesTopic = (activeTopicFilter === 'all' || itemObj.topic === activeTopicFilter);
+        const matchesQuery = !query || itemObj.text.includes(query);
+
+        if (matchesTopic && matchesQuery) {
+          itemObj.element.style.display = '';
+          visibleCount++;
+        } else {
+          itemObj.element.style.display = 'none';
+        }
+      });
+
+      if (visibleCountEl) visibleCountEl.textContent = visibleCount;
+      if (emptyStateEl) emptyStateEl.style.display = visibleCount === 0 ? 'block' : 'none';
+      if (clearBtn) clearBtn.style.display = query.length > 0 ? 'flex' : 'none';
+    }
+
+    if (searchInput) {
+      searchInput.addEventListener('input', filterMasterCards);
+    }
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        if (searchInput) {
+          searchInput.value = '';
+          searchInput.focus();
+        }
+        filterMasterCards();
+      });
+    }
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        activeTopicFilter = btn.dataset.filter || 'all';
+        filterMasterCards();
+      });
+    });
+
+    if (resetBtn) {
+      resetBtn.addEventListener('click', () => {
+        if (searchInput) searchInput.value = '';
+        activeTopicFilter = 'all';
+        filterBtns.forEach(b => {
+          if (b.dataset.filter === 'all') b.classList.add('active');
+          else b.classList.remove('active');
+        });
+        filterMasterCards();
+      });
+    }
+
+    filterMasterCards();
+  }
+
+  // Inicializar Glosarios Interactivos por Subtema (t1 - t5)
+  function initSubtopicGlossaries() {
+    if (!window.PC5_GLOSSARY_DATA) return;
+
+    ['t1', 't2', 't3', 't4', 't5'].forEach(topicId => {
+      const container = document.getElementById(`subtopic-glossary-cards-${topicId}`);
+      if (!container) return;
+
+      const subtopicData = window.PC5_GLOSSARY_DATA.filter(item => item.topic === topicId);
+      container.innerHTML = '';
+
+      const cardNodes = [];
+      subtopicData.forEach(item => {
+        const card = createGlossaryCard(item, true);
+        container.appendChild(card);
+        cardNodes.push({
+          element: card,
+          text: card.dataset.searchText
+        });
+      });
+
+      renderMath(container);
+
+      // Buscador específico del subtema
+      const searchInput = document.querySelector(`.subtopic-search-input[data-topic="${topicId}"]`);
+      const clearBtn = document.querySelector(`.subtopic-search-clear[data-topic="${topicId}"]`);
+      const counterEl = document.querySelector(`#subtopic-counter-${topicId} .subtopic-count-val`);
+
+      function filterSubtopic() {
+        const query = searchInput ? searchInput.value.trim().toLowerCase() : '';
+        let visibleCount = 0;
+
+        cardNodes.forEach(itemObj => {
+          const match = !query || itemObj.text.includes(query);
+          itemObj.element.style.display = match ? '' : 'none';
+          if (match) visibleCount++;
+        });
+
+        if (counterEl) counterEl.textContent = visibleCount;
+        if (clearBtn) clearBtn.style.display = query.length > 0 ? 'inline-block' : 'none';
+      }
+
+      if (searchInput) {
+        searchInput.addEventListener('input', filterSubtopic);
+      }
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          if (searchInput) {
+            searchInput.value = '';
+            searchInput.focus();
+          }
+          filterSubtopic();
+        });
+      }
+
+      // Botón para alternar modo compacto o detallado en el subtema
+      const toggleViewBtn = document.querySelector(`.btn-toggle-subtopic-view[data-topic="${topicId}"]`);
+      if (toggleViewBtn) {
+        toggleViewBtn.addEventListener('click', () => {
+          container.classList.toggle('compact-mode');
+          const isCompact = container.classList.contains('compact-mode');
+          const label = toggleViewBtn.querySelector('.view-mode-label');
+          if (label) {
+            label.textContent = isCompact ? 'Vista Detallada' : 'Vista Compacta';
+          }
+        });
+      }
+    });
+  }
+
+  // Inicializar glosarios
+  initMasterGlossary();
+  initSubtopicGlossaries();
+
+  // Enlace directo desde el navbar superior al glosario
+  const navGlossaryLink = document.getElementById('nav-link-glosario');
+  if (navGlossaryLink) {
+    navGlossaryLink.addEventListener('click', (e) => {
+      e.preventDefault();
+      switchTopic('glosario');
       const temarioEl = document.getElementById('temario');
       if (temarioEl) temarioEl.scrollIntoView({ behavior: 'smooth' });
     });

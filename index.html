@@ -43,6 +43,12 @@
           <span class="pdf-text-short">🎯 Retos</span>
         </a>
       </li>
+      <li>
+        <a href="#section-glosario" id="nav-link-glosario" class="nav-link-highlight nav-link-glossary">
+          <span class="pdf-text-long">📖 Glosario PC5</span>
+          <span class="pdf-text-short">📖 Glosario</span>
+        </a>
+      </li>
       <li><a href="#temario">Ejercicios</a></li>
       <li>
         <a href="pdf/Compendio_PC5_Calculo_Avanzado.pdf?v=1" target="_blank" rel="noopener noreferrer" class="btn-pdf-download" title="Descargar compendio completo oficial en PDF con Retos 2026-2 (120 páginas)">
@@ -104,6 +110,9 @@
       </button>
       <button class="topic-tab-btn retos-tab-special" data-topic="tr">
         <span>🎯</span> Retos 2026-2: Solucionario PC5 2025-II & Híbridos
+      </button>
+      <button class="topic-tab-btn glossary-tab-special" data-topic="glosario">
+        <span>📖</span> Glosario de Símbolos PC5
       </button>
     </nav>
 
@@ -175,38 +184,29 @@
             </p>
           </div>
 
-          <!-- Traductor de Jerga Formal -->
-          <div class="formal-translator-box">
-            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 25-26) ↔ Español Humano</h4>
-            <div class="translator-grid">
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $\operatorname{cont}(\partial\Omega) = 0 \iff \Omega \text{ es medible Jordan}$
-                </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  El borde de la región es una curva delgada y suave (sin grosor ni fractales), por lo que se puede encerrar en un número finito de rectangulitos de área total arbitrariamente pequeña menor a $\varepsilon$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Cita que la frontera es unión finita de grafos de funciones continuas $C^0$, concluyendo que tiene contenido nulo y que $f$ es Riemann-integrable.
-                </div>
+          <!-- Glosario Interactivo y Traductor del Subtema 1 -->
+          <div class="subtopic-glossary-widget" id="subtopic-glossary-t1" data-topic="t1">
+            <div class="subtopic-glossary-header">
+              <div class="subtopic-glossary-info">
+                <h4>📖 Glosario Interactivo de Notación (Sesiones 25-26)</h4>
+                <p class="subtopic-glossary-subtext">13 símbolos fundamentales: medibilidad Jordan, frontera de contenido nulo, función indicatriz y Teorema de Fubini.</p>
               </div>
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $\iint_\Omega f \, dA = \int_a^b \left( \int_{\phi_1(x)}^{\phi_2(x)} f(x,y) \, dy \right) dx$
+              <div class="subtopic-glossary-controls">
+                <div class="subtopic-search-wrap">
+                  <span class="subtopic-search-icon">🔍</span>
+                  <input type="text" class="subtopic-search-input" data-topic="t1" placeholder="Filtrar símbolos del Subtema 1..." autocomplete="off">
+                  <button type="button" class="subtopic-search-clear" data-topic="t1" title="Limpiar">✕</button>
                 </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  Teorema de Fubini para dominios Tipo 1: primero suma la masa a lo largo de un alambre vertical fijando $x$, y luego desliza ese alambre de izquierda a derecha.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Traza una flecha vertical que atraviese la región. El punto donde entra es el límite inferior en $y$; donde sale es el límite superior.
-                </div>
+                <button type="button" class="btn-toggle-subtopic-view" data-topic="t1" title="Alternar entre vista compacta y detallada">
+                  <span class="view-mode-icon">📑</span> <span class="view-mode-label">Vista Compacta</span>
+                </button>
               </div>
+            </div>
+            <div class="subtopic-glossary-counter" id="subtopic-counter-t1">
+              Mostrando <span class="subtopic-count-val">13</span> de 13 símbolos del Subtema 1
+            </div>
+            <div class="subtopic-glossary-cards" id="subtopic-glossary-cards-t1">
+              <!-- Renderizado dinámicamente desde window.PC5_GLOSSARY_DATA -->
             </div>
           </div>
 
@@ -341,38 +341,29 @@
             </p>
           </div>
 
-          <!-- Traductor de Jerga Formal -->
-          <div class="formal-translator-box">
-            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 28-29) ↔ Español Humano</h4>
-            <div class="translator-grid">
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $|\det J_\Phi(u,v)| = \left| \frac{\partial(x,y)}{\partial(u,v)} \right|$
-                </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  El factor que indica cuántas veces se agranda o encoge un trocito microscópico de área al cambiar del plano $(u,v)$ al plano $(x,y)$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Calcula el determinante de la matriz $2\times 2$ con derivadas parciales cruzadas y aplica siempre valor absoluto positivo.
-                </div>
+          <!-- Glosario Interactivo y Traductor del Subtema 2 -->
+          <div class="subtopic-glossary-widget" id="subtopic-glossary-t2" data-topic="t2">
+            <div class="subtopic-glossary-header">
+              <div class="subtopic-glossary-info">
+                <h4>📖 Glosario Interactivo de Notación (Sesiones 28-29)</h4>
+                <p class="subtopic-glossary-subtext">11 símbolos fundamentales: transformación $\Phi$, matriz y determinante Jacobiano, coordenadas polares y traslaciones elípticas.</p>
               </div>
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $dx \, dy = r \, dr \, d\theta$
+              <div class="subtopic-glossary-controls">
+                <div class="subtopic-search-wrap">
+                  <span class="subtopic-search-icon">🔍</span>
+                  <input type="text" class="subtopic-search-input" data-topic="t2" placeholder="Filtrar símbolos del Subtema 2..." autocomplete="off">
+                  <button type="button" class="subtopic-search-clear" data-topic="t2" title="Limpiar">✕</button>
                 </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  Regla de oro de polares: cada vez que cambias $x^2+y^2$ por $r^2$, debes pagar el peaje matemático agregando una $r$ al diferencial.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Multiplica inmediatamente tu integrando por $r$ antes de buscar cualquier antiderivada.
-                </div>
+                <button type="button" class="btn-toggle-subtopic-view" data-topic="t2" title="Alternar entre vista compacta y detallada">
+                  <span class="view-mode-icon">📑</span> <span class="view-mode-label">Vista Compacta</span>
+                </button>
               </div>
+            </div>
+            <div class="subtopic-glossary-counter" id="subtopic-counter-t2">
+              Mostrando <span class="subtopic-count-val">11</span> de 11 símbolos del Subtema 2
+            </div>
+            <div class="subtopic-glossary-cards" id="subtopic-glossary-cards-t2">
+              <!-- Renderizado dinámicamente desde window.PC5_GLOSSARY_DATA -->
             </div>
           </div>
 
@@ -508,38 +499,29 @@
             </ul>
           </div>
 
-          <!-- Traductor de Jerga Formal -->
-          <div class="formal-translator-box">
-            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 25, 27) ↔ Español Humano</h4>
-            <div class="translator-grid">
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $\operatorname{Vol}(\Omega) = \iiint_\Omega 1 \, dV$
-                </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  El volumen espacial de un cuerpo es la integral triple de la función constante 1 sobre dicho sólido.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Plantea los 3 pares de límites e integra la función unidad sin olvidar ningún diferencial.
-                </div>
+          <!-- Glosario Interactivo y Traductor del Subtema 3 -->
+          <div class="subtopic-glossary-widget" id="subtopic-glossary-t3" data-topic="t3">
+            <div class="subtopic-glossary-header">
+              <div class="subtopic-glossary-info">
+                <h4>📖 Glosario Interactivo de Notación (Sesiones 25, 27)</h4>
+                <p class="subtopic-glossary-subtext">10 símbolos fundamentales: integrales triples, elemento $dV$, volumen Jordan, proyecciones en planos coordenados y los 6 órdenes de Fubini.</p>
               </div>
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $\operatorname{Proy}_{XY}(\Omega)$
+              <div class="subtopic-glossary-controls">
+                <div class="subtopic-search-wrap">
+                  <span class="subtopic-search-icon">🔍</span>
+                  <input type="text" class="subtopic-search-input" data-topic="t3" placeholder="Filtrar símbolos del Subtema 3..." autocomplete="off">
+                  <button type="button" class="subtopic-search-clear" data-topic="t3" title="Limpiar">✕</button>
                 </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  La silueta o sombra plana que deja el sólido sobre el plano cartesiano $XY$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Elimina la variable $z$ igualando las superficies frontera para hallar la curva borde de la sombra plana.
-                </div>
+                <button type="button" class="btn-toggle-subtopic-view" data-topic="t3" title="Alternar entre vista compacta y detallada">
+                  <span class="view-mode-icon">📑</span> <span class="view-mode-label">Vista Compacta</span>
+                </button>
               </div>
+            </div>
+            <div class="subtopic-glossary-counter" id="subtopic-counter-t3">
+              Mostrando <span class="subtopic-count-val">10</span> de 10 símbolos del Subtema 3
+            </div>
+            <div class="subtopic-glossary-cards" id="subtopic-glossary-cards-t3">
+              <!-- Renderizado dinámicamente desde window.PC5_GLOSSARY_DATA -->
             </div>
           </div>
 
@@ -681,38 +663,29 @@
             </p>
           </div>
 
-          <!-- Traductor de Jerga Formal -->
-          <div class="formal-translator-box">
-            <h4>🔍 Traductor de Jerga Formal UNI (Sesiones 28, 30) ↔ Español Humano</h4>
-            <div class="translator-grid">
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $z = \sqrt{x^2+y^2} \iff \varphi = \pi/4$
-                </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  El cono estándar a $45^\circ$ en cartesianas tiene una ecuación compleja, pero en coordenadas esféricas se reduce a un ángulo cenital constante $\varphi = \pi/4$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Sustituye inmediatamente el límite superior o inferior de $\varphi$ por $\pi/4$.
-                </div>
+          <!-- Glosario Interactivo y Traductor del Subtema 4 -->
+          <div class="subtopic-glossary-widget" id="subtopic-glossary-t4" data-topic="t4">
+            <div class="subtopic-glossary-header">
+              <div class="subtopic-glossary-info">
+                <h4>📖 Glosario Interactivo de Notación (Sesiones 28, 30)</h4>
+                <p class="subtopic-glossary-subtext">10 símbolos fundamentales: cilíndricas $(r,\theta,z)$, esféricas $(\rho,\varphi,\theta)$, factor de volumen $\rho^2\sin\varphi$ y superficies canónicas.</p>
               </div>
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $x^2+y^2+z^2 \le 2az \iff \rho \le 2a\cos\varphi$
+              <div class="subtopic-glossary-controls">
+                <div class="subtopic-search-wrap">
+                  <span class="subtopic-search-icon">🔍</span>
+                  <input type="text" class="subtopic-search-input" data-topic="t4" placeholder="Filtrar símbolos del Subtema 4..." autocomplete="off">
+                  <button type="button" class="subtopic-search-clear" data-topic="t4" title="Limpiar">✕</button>
                 </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  Una esfera desplazada tangente al plano $XY$ en el origen: su radio polar no es constante, sino que depende de la inclinación del rayo con $\cos\varphi$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Integra $\rho$ desde $0$ hasta $2a\cos\varphi$, y $\varphi$ en $[0, \pi/2]$ (solo hemisferio norte).
-                </div>
+                <button type="button" class="btn-toggle-subtopic-view" data-topic="t4" title="Alternar entre vista compacta y detallada">
+                  <span class="view-mode-icon">📑</span> <span class="view-mode-label">Vista Compacta</span>
+                </button>
               </div>
+            </div>
+            <div class="subtopic-glossary-counter" id="subtopic-counter-t4">
+              Mostrando <span class="subtopic-count-val">10</span> de 10 símbolos del Subtema 4
+            </div>
+            <div class="subtopic-glossary-cards" id="subtopic-glossary-cards-t4">
+              <!-- Renderizado dinámicamente desde window.PC5_GLOSSARY_DATA -->
             </div>
           </div>
 
@@ -857,38 +830,29 @@
             </p>
           </div>
 
-          <!-- Traductor de Jerga Formal -->
-          <div class="formal-translator-box">
-            <h4>🔍 Traductor de Jerga Formal UNI (Sesión 30) ↔ Español Humano</h4>
-            <div class="translator-grid">
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $I_L = I_{\text{cm}} + M d^2$
-                </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  Teorema de Steiner (ejes paralelos): el momento de inercia respecto a cualquier eje paralelo es el momento respecto al centro de masa más la masa total por la distancia al cuadrado.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Calcula siempre primero el momento baricéntrico más fácil $I_{\text{cm}}$ y súmale $M d^2$.
-                </div>
+          <!-- Glosario Interactivo y Traductor del Subtema 5 -->
+          <div class="subtopic-glossary-widget" id="subtopic-glossary-t5" data-topic="t5">
+            <div class="subtopic-glossary-header">
+              <div class="subtopic-glossary-info">
+                <h4>📖 Glosario Interactivo de Notación (Sesión 30)</h4>
+                <p class="subtopic-glossary-subtext">13 símbolos fundamentales: cálculo en $\mathbb{R}^n$, simplex $\Delta_n$, función Gamma, masa, centro de gravedad y Teorema de Steiner.</p>
               </div>
-              <div class="translator-item">
-                <div class="trans-col-symbol">
-                  <span class="trans-col-label">Símbolo en Clase / Examen</span>
-                  $\Delta_n = \left\{ \mathbf{x} \in \mathbb{R}^n \mid x_i \ge 0, \sum x_i \le 1 \right\}$
+              <div class="subtopic-glossary-controls">
+                <div class="subtopic-search-wrap">
+                  <span class="subtopic-search-icon">🔍</span>
+                  <input type="text" class="subtopic-search-input" data-topic="t5" placeholder="Filtrar símbolos del Subtema 5..." autocomplete="off">
+                  <button type="button" class="subtopic-search-clear" data-topic="t5" title="Limpiar">✕</button>
                 </div>
-                <div class="trans-col-human">
-                  <span class="trans-col-label">En Español Sencillo</span>
-                  El simplex estándar n-dimensional (triángulo en 2D, tetraedro en 3D). Su volumen siempre es exactamente $1/n!$.
-                </div>
-                <div class="trans-col-action">
-                  <span class="trans-col-label">¿Qué hacer en tu hoja?</span>
-                  Usa la fórmula $\operatorname{Vol}(\Delta_n) = \frac{1}{n!}$ como atajo para verificar tus integrales iteradas.
-                </div>
+                <button type="button" class="btn-toggle-subtopic-view" data-topic="t5" title="Alternar entre vista compacta y detallada">
+                  <span class="view-mode-icon">📑</span> <span class="view-mode-label">Vista Compacta</span>
+                </button>
               </div>
+            </div>
+            <div class="subtopic-glossary-counter" id="subtopic-counter-t5">
+              Mostrando <span class="subtopic-count-val">13</span> de 13 símbolos del Subtema 5
+            </div>
+            <div class="subtopic-glossary-cards" id="subtopic-glossary-cards-t5">
+              <!-- Renderizado dinámicamente desde window.PC5_GLOSSARY_DATA -->
             </div>
           </div>
 
@@ -1241,6 +1205,77 @@
       </article>
     </section>
 
+    <!-- ========================================================================
+         SECCIÓN GLOSARIO: GLOSARIO UNIVERSAL DE SÍMBOLOS Y NOTACIÓN FORMAL PC5
+         ======================================================================== -->
+    <section class="topic-section" id="section-glosario">
+      <div class="glossary-master-container">
+
+        <!-- Encabezado del Glosario -->
+        <div class="glossary-master-hero">
+          <div class="glossary-hero-badge">
+            <span>📖</span>
+            <span>DICCIONARIO MATEMÁTICO INTEGRAL CM2A1</span>
+          </div>
+          <h2 class="glossary-master-title">Glosario de Notación, Símbolos y Jerga Formal PC5</h2>
+          <p class="glossary-master-desc">
+            Compendio de <strong>57 símbolos matemáticos rigurosos</strong> de las sesiones 25 a 30 de Cálculo Avanzado UNI. Cada ficha detalla cómo se lee en voz alta, su significado intuitivo, qué escribir en tu desarrollo de examen y los errores comunes que debes evitar.
+          </p>
+        </div>
+
+        <!-- Tarjeta Toolbar: Buscador y Filtros -->
+        <div class="glossary-toolbar-card">
+          <div class="glossary-search-box">
+            <span class="glossary-search-icon">🔍</span>
+            <input type="text" id="glossary-search-input" class="glossary-search-input" placeholder="Buscar por símbolo, nombre, concepto o fórmula (ej. Jacobiano, Fubini, simplex, frontera)..." autocomplete="off" spellcheck="false">
+            <button type="button" id="glossary-search-clear" class="glossary-search-clear" title="Limpiar búsqueda">✕</button>
+          </div>
+
+          <div class="glossary-filters-row">
+            <div class="glossary-filter-pills" id="glossary-topic-filters">
+              <button type="button" class="glossary-pill-btn active" data-filter="all">
+                <span>📚</span> Todos <span class="pill-count" id="count-all">57</span>
+              </button>
+              <button type="button" class="glossary-pill-btn" data-filter="t1">
+                <span>📐</span> Subtema 1 <span class="pill-count" id="count-t1">13</span>
+              </button>
+              <button type="button" class="glossary-pill-btn" data-filter="t2">
+                <span>🔄</span> Subtema 2 <span class="pill-count" id="count-t2">11</span>
+              </button>
+              <button type="button" class="glossary-pill-btn" data-filter="t3">
+                <span>🧊</span> Subtema 3 <span class="pill-count" id="count-t3">10</span>
+              </button>
+              <button type="button" class="glossary-pill-btn" data-filter="t4">
+                <span>🌐</span> Subtema 4 <span class="pill-count" id="count-t4">10</span>
+              </button>
+              <button type="button" class="glossary-pill-btn" data-filter="t5">
+                <span>⚖️</span> Subtema 5 <span class="pill-count" id="count-t5">13</span>
+              </button>
+            </div>
+
+            <div class="glossary-stats-indicator">
+              <span>Mostrando:</span>
+              <strong id="glossary-visible-count">57</strong> de <span id="glossary-total-count">57</span> símbolos
+            </div>
+          </div>
+        </div>
+
+        <!-- Grilla de Tarjetas Maestras -->
+        <div class="glossary-cards-grid" id="glossary-cards-container">
+          <!-- Generado dinámicamente desde window.PC5_GLOSSARY_DATA -->
+        </div>
+
+        <!-- Estado Vacío -->
+        <div class="glossary-empty-state" id="glossary-empty-state" style="display: none;">
+          <div class="empty-icon">🔍</div>
+          <h3>No se encontraron símbolos que coincidan con la búsqueda</h3>
+          <p>Prueba con otros términos como <em>Jordan</em>, <em>Jacobiano</em>, <em>esféricas</em>, <em>Steiner</em> o <em>Fubini</em>.</p>
+          <button type="button" class="btn-action" id="btn-reset-glossary-search">Restablecer filtros</button>
+        </div>
+
+      </div>
+    </section>
+
   </main>
 
   <!-- Footer Institucional -->
@@ -1260,6 +1295,7 @@
   <!-- Scripts Locales del Proyecto -->
   <script src="js/visualizers.js"></script>
   <script src="js/data-exercises.js"></script>
+  <script src="js/data-glossary.js"></script>
   <script src="js/retos-2026.js"></script>
   <script src="js/app.js"></script>
 
